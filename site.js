@@ -25,7 +25,8 @@
     {title:'경계',desc:'내가 허용할 것과 허용하지 않을 것을 명확히 하는 기준',url:'glossary.html?q=경계',keys:'boundary 한계 존중'},
     {title:'낯선 상황 절차',desc:'영유아의 분리와 재결합 행동을 관찰하는 연구 절차',url:'encyclopedia.html#measurement',keys:'ainsworth 아동 혼란형'},
     {title:'ECR-R',desc:'성인 연애 애착의 불안과 회피를 측정하는 대표 척도',url:'encyclopedia.html#measurement',keys:'검사 척도 experiences close relationships'},
-    {title:'AAI',desc:'어린 시절 경험을 말하는 담화의 조직 방식을 평가하는 면접',url:'encyclopedia.html#measurement',keys:'adult attachment interview 성인애착면접'}
+    {title:'AAI',desc:'어린 시절 경험을 말하는 담화의 조직 방식을 평가하는 면접',url:'encyclopedia.html#measurement',keys:'adult attachment interview 성인애착면접'},
+    {title:'의견 보내기',desc:'열린 프로젝트에 개선 의견과 오류 제보 남기기',url:'feedback.html',keys:'피드백 의견 제안 오류 열린 서비스'}
   ];
 
   function initTheme() {
@@ -52,7 +53,6 @@
     const overlay = $('#siteOverlay');
     const close = $('#sidebarClose');
     if (!button || !sidebar || !overlay) return;
-
     const setOpen = open => {
       sidebar.classList.toggle('open', open);
       overlay.classList.toggle('show', open);
@@ -62,12 +62,8 @@
     button.addEventListener('click', () => setOpen(true));
     close?.addEventListener('click', () => setOpen(false));
     overlay.addEventListener('click', () => setOpen(false));
-    sidebar.addEventListener('click', event => {
-      if (event.target.closest('a')) setOpen(false);
-    });
-    addEventListener('keydown', event => {
-      if (event.key === 'Escape') setOpen(false);
-    });
+    sidebar.addEventListener('click', event => { if (event.target.closest('a')) setOpen(false); });
+    addEventListener('keydown', event => { if (event.key === 'Escape') setOpen(false); });
   }
 
   function normalize(value) {
@@ -81,7 +77,6 @@
     const input = $('#siteSearchInput');
     const results = $('#siteSearchResults');
     if (!openButton || !modal || !input || !results) return;
-
     const render = query => {
       const term = normalize(query);
       if (!term) {
@@ -94,32 +89,40 @@
         const score = words.reduce((total, word) => total + (haystack.includes(word) ? 1 : 0), 0);
         return {...item, score};
       }).filter(item => item.score > 0).sort((a,b) => b.score - a.score).slice(0, 12);
-
       results.innerHTML = matches.length
         ? matches.map(item => `<a href="${item.url}"><b>${item.title}</b><span>${item.desc}</span></a>`).join('')
         : '<div class="search-empty">검색 결과가 없습니다. 더 짧은 단어로 찾아보세요.</div>';
     };
-
     const setOpen = open => {
       modal.classList.toggle('open', open);
       document.body.style.overflow = open ? 'hidden' : '';
-      if (open) {
-        render(input.value);
-        setTimeout(() => input.focus(), 30);
-      }
+      if (open) { render(input.value); setTimeout(() => input.focus(), 30); }
     };
     openButton.addEventListener('click', () => setOpen(true));
     closeButton?.addEventListener('click', () => setOpen(false));
     input.addEventListener('input', () => render(input.value));
-    modal.addEventListener('click', event => {
-      if (event.target === modal) setOpen(false);
-    });
+    modal.addEventListener('click', event => { if (event.target === modal) setOpen(false); });
     addEventListener('keydown', event => {
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-        event.preventDefault(); setOpen(true);
-      }
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); setOpen(true); }
       if (event.key === 'Escape') setOpen(false);
     });
+  }
+
+  function initOpenProject() {
+    $$('.site-sidebar').forEach(sidebar => {
+      if (sidebar.querySelector('a[href="feedback.html"]')) return;
+      const group = document.createElement('div');
+      group.className = 'sidebar-group';
+      group.innerHTML = '<span class="sidebar-label">PROJECT</span><a href="feedback.html">의견 보내기</a>';
+      sidebar.appendChild(group);
+    });
+    const welcome = $('.dashboard-welcome');
+    if (!welcome || $('#service-purpose')) return;
+    const section = document.createElement('section');
+    section.className = 'dashboard-section';
+    section.id = 'service-purpose';
+    section.innerHTML = '<article class="dashboard-feature"><small>WHY THIS PROJECT STARTED</small><h3>서로의 마음을 더 잘 이해하기 위해</h3><p>마음의 모양은 관계에서 서로 다른 반응을 이해하고, 더 건강하고 행복한 관계를 만드는 데 도움을 주기 위해 시작했습니다. 배운 내용을 개인적인 메모에만 남기지 않고 누구나 쉽게 살펴볼 수 있는 정보 서비스로 정리합니다.</p><a class="button button-primary" href="feedback.html">열린 프로젝트에 의견 보내기</a></article>';
+    welcome.insertAdjacentElement('afterend', section);
   }
 
   function initServiceWorker() {
@@ -129,5 +132,6 @@
   initTheme();
   initMenu();
   initSearch();
+  initOpenProject();
   initServiceWorker();
 })();
