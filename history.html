@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f6">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="이 기기에 저장된 마음의 모양 애착 자기점검 결과를 날짜와 관계별로 비교합니다.">
+  <title>나의 변화 기록 · 마음의 모양</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="content-pages.css">
+  <link rel="stylesheet" href="readability.css">
+  <link rel="stylesheet" href="personalization.css">
+</head>
+<body class="site-page content-page history-page">
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header">
+    <div class="site-header-left"><a class="brand" href="./"><span class="brand-mark"><span></span></span><span class="brand-copy"><strong>마음의 모양</strong><small>My History</small></span></a></div>
+    <nav class="site-desktop-nav"><a href="./">홈</a><a href="types.html">유형</a><a href="pairings.html">조합</a><a href="tests.html">테스트</a><a href="glossary.html">용어사전</a><a href="encyclopedia.html">백과사전</a></nav>
+  </header>
+  <main id="main">
+    <section class="content-hero">
+      <span>MY ATTACHMENT HISTORY</span>
+      <h1>한 번의 유형보다<br><em>변화의 흐름</em>을 살펴보기</h1>
+      <p>테스트를 완료할 때마다 최근 결과가 이 기기에 저장됩니다. 관계와 시기에 따라 불안과 회피가 어떻게 달라지는지 비교해 보세요.</p>
+    </section>
+    <div class="content-wrap">
+      <section class="section-block" id="trendSummary"></section>
+      <section class="section-block">
+        <div class="section-block-head"><span>SAVED RESULTS</span><h2>저장된 결과</h2><p>최대 12개의 최근 결과를 보관합니다. 데이터는 서버로 전송되지 않습니다.</p></div>
+        <div class="history-grid" id="historyGrid"></div>
+        <div class="empty-personal" id="historyEmpty" hidden>아직 저장된 결과가 없습니다. 테스트를 완료하면 여기에 변화 기록이 생깁니다.</div>
+        <div class="history-actions"><a class="button button-primary" href="tests.html">새 테스트 하기</a><button class="button button-ghost" type="button" id="clearHistory">기록 모두 지우기</button></div>
+      </section>
+    </div>
+  </main>
+  <script src="history.js"></script>
+  <script src="site-enhancements.js"></script>
+</body>
+</html>
