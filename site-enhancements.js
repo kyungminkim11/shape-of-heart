@@ -103,11 +103,12 @@
 
   function enhanceOriginAndExample(){
     const story=$('#service-purpose .dashboard-feature');
-    if(story&&!$('.origin-story-details',story)){
-      story.querySelector('h3').textContent='연인의 마음을 더 잘 이해하고 싶어서 시작했습니다';
-      const first=story.querySelector('p');if(first)first.textContent='연애에 서툴러 상대의 마음을 충분히 알아차리지 못하고 실망을 주거나, 서로 다른 방식으로 감정을 표현하다 다툰 경험이 이 프로젝트의 출발점이 됐습니다.';
-      const details=document.createElement('details');details.className='origin-story-details';details.innerHTML='<summary>이야기 더 읽기</summary><div><p>누가 맞고 틀린지를 가르는 것보다 왜 같은 상황을 서로 다르게 느끼고 반응하는지 알고 싶었습니다. 그래서 연인의 유형과 제 반응을 이해하기 위해 애착 이론과 관계 패턴을 공부하기 시작했습니다.</p><p>그 공부를 혼자만의 메모로 남기지 않고 비슷한 고민을 하는 사람도 쉽게 살펴볼 수 있도록 만든 것이 마음의 모양입니다. 누군가를 낙인찍기보다 서로의 마음을 이해하고, 모두가 건강하고 행복한 연애를 만드는 데 도움이 되기를 바랍니다.</p><p><strong>마음의 모양은 열린 서비스입니다.</strong> 내용, 테스트, 기능과 디자인에 관한 의견을 받으며 계속 개선합니다.</p></div>';
-      story.appendChild(details);
+    if(story){
+      story.querySelector('h3').textContent='같은 잘못을 반복하지 않기 위해 시작했습니다';
+      const first=story.querySelector('p');if(first)first.textContent='소중한 사람의 불안과 상처를 충분히 이해하지 못한 채, 미안하다는 말과 같은 약속만 반복했던 제 행동을 돌아보는 것이 이 프로젝트의 출발점입니다.';
+      let details=$('.origin-story-details',story);
+      if(!details){details=document.createElement('details');details.className='origin-story-details';story.appendChild(details);}
+      details.innerHTML='<summary>이야기 더 읽기</summary><div><p>상대방이 여러 번 불안함과 힘든 마음을 이야기했는데도 저는 그 말을 충분히 이해하지 못했습니다. 상대를 위한다고 생각하며 말을 숨기거나 솔직하게 이야기하지 않았던 행동도 결국 신뢰를 무너뜨리고 불안을 더 크게 만드는 행동이었다는 것을 뒤늦게 깨달았습니다.</p><p>애착 유형을 공부하기 시작한 것은 상대방을 특정한 유형으로 단정하거나 관계에서 일어난 일을 유형의 탓으로 돌리기 위해서가 아닙니다. 상대방이 어떤 마음으로 힘들어했는지, 저는 왜 같은 행동을 반복했는지, 앞으로 누군가를 사랑할 때 어떤 태도와 소통이 필요한지를 제대로 이해하고 싶었습니다.</p><p>이 사이트를 만들었다는 사실만으로 제가 달라졌다고 생각하지 않습니다. 공부하고 정리하는 것은 변화의 시작일 뿐이고, 진짜 변화는 말을 숨기지 않는 것, 불편한 상황에서도 솔직하게 이야기하는 것, 상대방의 감정을 제 기준으로 판단하지 않는 것, 약속한 일을 실제 행동으로 지키는 것으로 증명해야 한다고 생각합니다.</p><p>이 기록은 누군가에게 다시 기회를 달라고 요구하거나 결정을 바꾸게 하기 위한 수단이 아닙니다. 상대방의 마음과 결정을 존중하고, 제가 공부하고 달라지기 위해 노력하는 일은 제가 스스로 선택하고 책임져야 할 몫입니다.</p><p>제가 무엇을 잘못했는지 잊지 않고 같은 방식으로 다시는 소중한 사람에게 상처를 주지 않기 위해 이 공간을 만들었습니다. 이곳이 관계를 단정하는 답안지가 아니라 자신의 마음과 행동을 천천히 돌아볼 수 있는 작은 안내서가 되었으면 합니다.</p></div>';
     }
     $$('.dashboard-feature').forEach(card=>{const h=card.querySelector('h3');if(h?.textContent.includes('불안형과 회피형')){h.textContent='안정형 × 불안형은 어떻게 서로를 도울 수 있을까요?';const p=card.querySelector('p');if(p)p.textContent='안정형의 일관된 반응은 불안형에게 새로운 안전 경험이 될 수 있습니다. 다만 한쪽이 계속 달래는 역할을 맡기보다, 따뜻한 안심과 명확한 경계를 함께 사용하고 불안형도 자기조절을 키우는 것이 중요합니다.';const a=card.querySelector('a');if(a){a.href='pairings.html?me=secure&partner=anxious';a.textContent='안정형 × 불안형 예시 보기';}}});
   }
