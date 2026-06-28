@@ -1,27 +1,9 @@
-const CACHE = 'shape-of-heart-v3';
+const CACHE = 'shape-of-heart-v5';
 const ASSETS = [
-  './',
-  './index.html',
-  './types.html',
-  './pairings.html',
-  './tests.html',
-  './glossary.html',
-  './encyclopedia.html',
-  './feedback.html',
-  './styles.css',
-  './site.css',
-  './content-pages.css',
-  './tests.css',
-  './encyclopedia.css',
-  './site.js',
-  './content-data.js',
-  './types.js',
-  './pairings.js',
-  './tests.js',
-  './glossary.js',
-  './encyclopedia.js',
-  './manifest.webmanifest',
-  './assets/icon.svg'
+  './','./index.html','./types.html','./pairings.html','./tests.html','./glossary.html','./encyclopedia.html','./feedback.html','./history.html',
+  './styles.css','./site.css','./content-pages.css','./tests.css','./encyclopedia.css','./readability.css','./personalization.css',
+  './site.js','./site-enhancements.js','./test-enhancements.js','./history.js','./content-data.js','./types.js','./pairings.js','./tests.js','./glossary.js','./encyclopedia.js',
+  './manifest.webmanifest','./contact.json','./robots.txt','./assets/icon.svg'
 ];
 
 self.addEventListener('install', event => {
