@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f6">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="안정형, 불안집착형, 거부회피형, 공포회피형이 서로 만났을 때 나타날 수 있는 16가지 관계 조합을 분석합니다.">
+  <title>애착 유형 16가지 조합 · 마음의 모양</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="content-pages.css">
+  <script>try{const s=localStorage.getItem('soh-theme');if(s==='dark'||(!s&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.dataset.theme='dark'}catch(_){}</script>
+</head>
+<body class="site-page content-page">
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="site-header">
+    <div class="site-header-left">
+      <button class="site-menu-button" id="menuButton" type="button" aria-label="전체 메뉴 열기" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"><span></span></span><span class="brand-copy"><strong>마음의 모양</strong><small>Pairing Explorer</small></span></a>
+    </div>
+    <nav class="site-desktop-nav" aria-label="주요 메뉴"><a href="./">홈</a><a href="types.html">유형</a><a href="pairings.html" class="active">조합</a><a href="tests.html">테스트</a><a href="glossary.html">용어사전</a><a href="encyclopedia.html">백과사전</a></nav>
+    <div class="site-header-actions">
+      <button class="site-search-button" id="searchButton" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><span>검색</span></button>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="화면 테마 변경"><svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12h2M18 12h2"/></svg><svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg></button>
+    </div>
+  </header>
+
+  <div class="site-overlay" id="siteOverlay"></div>
+  <aside class="site-sidebar" id="siteSidebar" aria-label="전체 메뉴">
+    <div class="sidebar-top"><a class="brand" href="./"><span class="brand-mark" aria-hidden="true"><span></span></span><span class="brand-copy"><strong>마음의 모양</strong><small>Information Hub</small></span></a><button class="sidebar-close" id="sidebarClose" type="button" aria-label="메뉴 닫기">×</button></div>
+    <div class="sidebar-group"><span class="sidebar-label">MAIN</span><a href="./">홈</a><a href="tests.html">유형 테스트</a></div>
+    <div class="sidebar-group"><span class="sidebar-label">LEARN</span><a href="types.html">유형별 특징</a><a href="pairings.html" class="active">16가지 조합</a><a href="glossary.html">용어 사전</a><a href="encyclopedia.html">애착 백과사전</a></div>
+  </aside>
+
+  <main id="main">
+    <section class="content-hero">
+      <span>16 RELATIONSHIP COMBINATIONS</span>
+      <h1>나와 상대의 반응이 만나면<br><em>어떤 흐름</em>이 생길까요?</h1>
+      <p>조합은 궁합 점수나 미래 예측이 아닙니다. 두 사람이 스트레스 상황에서 사용하는 보호 전략이 어떻게 맞물리는지 살펴보는 관계 패턴 지도입니다.</p>
+      <div class="content-hero-actions"><a href="#explorer">조합 선택하기</a><a href="types.html">각 유형 먼저 보기</a></div>
+    </section>
+
+    <div class="content-wrap">
+      <section class="section-block" id="explorer">
+        <div class="section-block-head"><span>PAIRING EXPLORER</span><h2>두 유형을 선택하세요</h2><p>방향에 따라 해석이 달라집니다. ‘불안형인 나 × 회피형 상대’와 그 반대는 같은 순환을 공유해도 필요한 실천이 다릅니다.</p></div>
+        <div class="pair-tool">
+          <div class="pair-selectors"><label><span>나의 경향</span><select id="myType" aria-label="나의 애착 경향"></select></label><span class="pair-heart" aria-hidden="true">♡</span><label><span>상대의 경향</span><select id="partnerType" aria-label="상대의 애착 경향"></select></label></div>
+        </div>
+        <div class="pair-result" id="pairResult" aria-live="polite"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="pair-matrix-title"><h2>16개 조합 한눈에 보기</h2><p>셀을 누르면 해당 조합의 상세 분석으로 이동합니다.</p></div>
+        <div class="full-pair-matrix" id="pairMatrix" aria-label="애착 유형 16가지 조합표"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-block-head"><span>HOW TO READ</span><h2>조합을 해석하는 원칙</h2></div>
+        <div class="profile-list-grid">
+          <article class="profile-list-card"><h3>궁합 점수가 아닙니다</h3><p style="margin:0;color:var(--text-soft);font-size:9.5px;line-height:1.6">같은 조합도 정서 조절, 책임감, 가치관, 관계 안전성에 따라 전혀 다르게 기능할 수 있습니다.</p></article>
+          <article class="profile-list-card"><h3>방향성을 봅니다</h3><p style="margin:0;color:var(--text-soft);font-size:9.5px;line-height:1.6">누가 불안 반응을 쓰고 누가 회피 반응을 쓰는지에 따라 필요한 행동이 달라집니다.</p></article>
+          <article class="profile-list-card"><h3>행동 책임은 별개입니다</h3><p style="margin:0;color:var(--text-soft);font-size:9.5px;line-height:1.6">폭언, 위협, 강압, 외도, 잠수 같은 행동은 애착 유형으로 정당화할 수 없습니다.</p></article>
+          <article class="profile-list-card"><h3>현재 관계를 확인합니다</h3><p style="margin:0;color:var(--text-soft);font-size:9.5px;line-height:1.6">개인의 성향뿐 아니라 상대가 실제로 일관되고 신뢰할 만한 행동을 하는지도 함께 평가해야 합니다.</p></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="site-bottom-nav" aria-label="모바일 메뉴"><a href="./"><svg viewBox="0 0 24 24"><path d="m4 10 8-6 8 6v9H4Z"/></svg><span>홈</span></a><a href="types.html"><svg viewBox="0 0 24 24"><path d="M12 20S4 15.5 4 9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.5 12 20 12 20Z"/></svg><span>유형</span></a><a href="tests.html"><svg viewBox="0 0 24 24"><path d="M9 4h6l1 3h3v13H5V7h3Z"/></svg><span>테스트</span></a><a href="pairings.html" class="active"><svg viewBox="0 0 24 24"><path d="M8 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm8 6a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg><span>조합</span></a><a href="encyclopedia.html"><svg viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Z"/></svg><span>백과</span></a></nav>
+
+  <div class="site-search-modal" id="searchModal" role="dialog" aria-modal="true"><div class="search-modal-inner"><div class="search-modal-top"><input class="search-modal-input" id="siteSearchInput" type="search" placeholder="유형, 조합, 용어 검색"><button class="search-modal-close" id="searchClose" type="button">×</button></div><div class="search-results" id="siteSearchResults"></div></div></div>
+  <script src="content-data.js"></script>
+  <script src="pairings.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>
