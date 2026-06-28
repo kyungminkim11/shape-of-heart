@@ -1,0 +1,19 @@
+{
+  "name": "마음의 모양 · Shape of Heart",
+  "short_name": "마음의 모양",
+  "description": "애착 불안과 회피의 두 축으로 관계 반응을 이해하는 모바일 우선 안내서",
+  "lang": "ko-KR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffaf8",
+  "theme_color": "#fff8f6",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
