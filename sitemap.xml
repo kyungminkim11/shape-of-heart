@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://shape-of-heart.lavalabs.co.kr/</loc></url>
+<url><loc>https://shape-of-heart.lavalabs.co.kr/types.html</loc></url>
+<url><loc>https://shape-of-heart.lavalabs.co.kr/pairings.html</loc></url>
+<url><loc>https://shape-of-heart.lavalabs.co.kr/tests.html</loc></url>
+</urlset>
