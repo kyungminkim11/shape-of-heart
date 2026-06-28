@@ -1,0 +1,30 @@
+name: Configure custom domain
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - CNAME
+      - .github/workflows/configure-custom-domain.yml
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+  configure-domain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure GitHub Pages custom domain
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CUSTOM_DOMAIN: shape-of-heart.lavalabs.co.kr
+        run: |
+          gh api \
+            --method PUT \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "/repos/${GITHUB_REPOSITORY}/pages" \
+            -f cname="${CUSTOM_DOMAIN}" \
+            -f build_type="workflow"
