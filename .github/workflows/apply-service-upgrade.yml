@@ -22,11 +22,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Patch pages
+      - name: Patch pages and metadata
         run: |
           python - <<'PY'
           from pathlib import Path
           from urllib.parse import urljoin
+          import json, re
 
           domain = 'https://shape-of-heart.lavalabs.co.kr/'
           pages = ['index.html','types.html','pairings.html','tests.html','glossary.html','encyclopedia.html','feedback.html','history.html']
@@ -45,7 +46,6 @@ jobs:
               if 'rel="canonical"' not in html:
                   html = html.replace('</head>', f'  <link rel="canonical" href="{canonical}">\n</head>')
               if 'property="og:url"' in html:
-                  import re
                   html = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{canonical}">', html)
               else:
                   html = html.replace('</head>', f'  <meta property="og:url" content="{canonical}">\n  <meta name="twitter:card" content="summary_large_image">\n</head>')
@@ -71,6 +71,13 @@ jobs:
               html = html.replace('pairings.html?me=anxious&partner=dismissive', 'pairings.html?me=secure&partner=anxious')
               html = html.replace('불안–회피 조합 보기', '안정형 × 불안형 예시 보기')
               index.write_text(html, encoding='utf-8')
+
+          email = 'info' + '@' + 'lavalabs.co.kr'
+          Path('contact.json').write_text(json.dumps({'feedbackEmail': email}, ensure_ascii=False), encoding='utf-8')
+
+          urls = ['','types.html','pairings.html','tests.html','glossary.html','encyclopedia.html','history.html','feedback.html']
+          entries = ''.join(f'<url><loc>{urljoin(domain, item)}</loc></url>' for item in urls)
+          Path('sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + entries + '</urlset>', encoding='utf-8')
           PY
 
       - name: Commit upgrade
@@ -81,6 +88,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html types.html pairings.html pairings.js tests.html glossary.html encyclopedia.html feedback.html history.html
+          git add index.html types.html pairings.html pairings.js tests.html glossary.html encyclopedia.html feedback.html history.html contact.json sitemap.xml
           git commit -m "feat: apply unified UX, SEO and personalization"
           git push
