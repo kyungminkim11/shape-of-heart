@@ -14,8 +14,8 @@
   partnerSelect.innerHTML = options;
 
   const params = new URLSearchParams(location.search);
-  const initialMe = data.types[params.get('me')] ? params.get('me') : 'anxious';
-  const initialPartner = data.types[params.get('partner')] ? params.get('partner') : 'dismissive';
+  const initialMe = data.types[params.get('me')] ? params.get('me') : 'secure';
+  const initialPartner = data.types[params.get('partner')] ? params.get('partner') : 'anxious';
   mySelect.value = initialMe;
   partnerSelect.value = initialPartner;
 

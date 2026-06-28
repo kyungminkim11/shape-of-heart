@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="애착 백과사전 · 마음의 모양">
   <meta property="og:description" content="유형을 넘어 개념·특징·강점·위험·16가지 조합까지 깊이 살펴보세요.">
-  <meta property="og:url" content="https://kyungminkim11.github.io/shape-of-heart/encyclopedia.html">
+  <meta property="og:url" content="https://shape-of-heart.lavalabs.co.kr/encyclopedia.html">
   <title>애착 백과사전 · 마음의 모양</title>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
@@ -21,6 +21,9 @@
       if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark';
     } catch (_) {}
   </script>
+  <link rel="stylesheet" href="readability.css">
+  <link rel="stylesheet" href="personalization.css">
+  <link rel="canonical" href="https://shape-of-heart.lavalabs.co.kr/encyclopedia.html">
 </head>
 <body class="encyclopedia-page">
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -325,5 +328,6 @@
   <button class="back-to-top" id="backToTop" type="button" aria-label="맨 위로 이동">↑</button>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="encyclopedia.js" defer></script>
+  <script src="site-enhancements.js" defer></script>
 </body>
 </html>

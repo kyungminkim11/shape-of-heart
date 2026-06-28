@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="마음의 모양 · 성인 애착 정보 사이트">
   <meta property="og:description" content="유형, 조합, 테스트, 용어사전까지 한곳에서 살펴보세요.">
-  <meta property="og:url" content="https://kyungminkim11.github.io/shape-of-heart/">
+  <meta property="og:url" content="https://shape-of-heart.lavalabs.co.kr/">
   <title>마음의 모양 · 성인 애착 정보 사이트</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
@@ -22,6 +22,9 @@
       if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark';
     } catch (_) {}
   </script>
+  <link rel="stylesheet" href="readability.css">
+  <link rel="stylesheet" href="personalization.css">
+  <link rel="canonical" href="https://shape-of-heart.lavalabs.co.kr/">
 </head>
 <body class="site-page">
   <a class="skip-link" href="#main">본문으로 바로가기</a>
@@ -151,9 +154,9 @@
         <section class="dashboard-section">
           <article class="dashboard-feature">
             <small>FEATURED GUIDE</small>
-            <h3>불안형과 회피형이 만나면 왜 더 힘들어질까요?</h3>
-            <p>한쪽이 확신을 얻으려고 가까이 갈수록 다른 쪽은 압박을 느끼고 멀어지며, 그 거리가 다시 불안을 키우는 추격–철회 악순환이 생길 수 있습니다. 누구 한 명의 ‘성격 문제’가 아니라 서로의 보호 전략이 맞물리는 구조로 살펴봅니다.</p>
-            <a class="button button-primary" href="pairings.html?me=anxious&partner=dismissive">불안–회피 조합 보기</a>
+            <h3>안정형 × 불안형은 어떻게 서로를 도울 수 있을까요?</h3>
+            <p>안정형의 일관된 반응은 불안형에게 새로운 안전 경험이 될 수 있습니다. 다만 한쪽이 계속 달래는 역할을 맡기보다 따뜻한 안심과 명확한 경계를 함께 사용하고, 불안형도 자기조절을 키우는 것이 중요합니다.</p>
+            <a class="button button-primary" href="pairings.html?me=secure&partner=anxious">안정형 × 불안형 예시 보기</a>
           </article>
         </section>
 
@@ -190,5 +193,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="site.js" defer></script>
+  <script src="site-enhancements.js" defer></script>
 </body>
 </html>
