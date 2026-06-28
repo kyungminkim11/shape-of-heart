@@ -26,11 +26,13 @@
 
 GitHub Pages와 GitHub Actions를 사용합니다.
 
-- 서비스: https://kyungminkim11.github.io/shape-of-heart/
-- 유형: https://kyungminkim11.github.io/shape-of-heart/types.html
-- 조합: https://kyungminkim11.github.io/shape-of-heart/pairings.html
-- 테스트: https://kyungminkim11.github.io/shape-of-heart/tests.html
-- 용어 사전: https://kyungminkim11.github.io/shape-of-heart/glossary.html
-- 백과사전: https://kyungminkim11.github.io/shape-of-heart/encyclopedia.html
+- 서비스: https://shape-of-heart.lavalabs.co.kr/
+- 유형: https://shape-of-heart.lavalabs.co.kr/types.html
+- 조합: https://shape-of-heart.lavalabs.co.kr/pairings.html
+- 테스트: https://shape-of-heart.lavalabs.co.kr/tests.html
+- 용어 사전: https://shape-of-heart.lavalabs.co.kr/glossary.html
+- 백과사전: https://shape-of-heart.lavalabs.co.kr/encyclopedia.html
+
+기본 GitHub Pages 주소는 백업 주소로 유지됩니다.
 
 > 이 웹사이트는 교육용 정보를 제공하며 의료적·심리학적 진단이나 상담을 대신하지 않습니다.
