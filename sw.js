@@ -1,5 +1,28 @@
-const CACHE = 'shape-of-heart-v1';
-const ASSETS = ['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./assets/icon.svg'];
+const CACHE = 'shape-of-heart-v3';
+const ASSETS = [
+  './',
+  './index.html',
+  './types.html',
+  './pairings.html',
+  './tests.html',
+  './glossary.html',
+  './encyclopedia.html',
+  './feedback.html',
+  './styles.css',
+  './site.css',
+  './content-pages.css',
+  './tests.css',
+  './encyclopedia.css',
+  './site.js',
+  './content-data.js',
+  './types.js',
+  './pairings.js',
+  './tests.js',
+  './glossary.js',
+  './encyclopedia.js',
+  './manifest.webmanifest',
+  './assets/icon.svg'
+];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));
@@ -11,9 +34,9 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
+  event.respondWith(fetch(event.request).then(response => {
     const copy = response.clone();
     caches.open(CACHE).then(cache => cache.put(event.request, copy));
     return response;
-  }).catch(() => caches.match('./index.html'))));
+  }).catch(() => caches.match(event.request).then(cached => cached || caches.match('./index.html'))));
 });
