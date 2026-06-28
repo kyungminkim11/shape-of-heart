@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f6">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="애착 불안과 회피를 살펴보는 단순형 12문항·복잡형 36문항 자기점검 테스트입니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="애착 유형 테스트 · 마음의 모양">
+  <meta property="og:description" content="가볍게 보는 12문항과 깊이 살펴보는 36문항으로 현재 관계 반응을 확인해 보세요.">
+  <title>애착 유형 테스트 · 마음의 모양</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="tests.css">
+  <script>
+    try {
+      const saved = localStorage.getItem('soh-theme');
+      if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark';
+    } catch (_) {}
+  </script>
+</head>
+<body class="tests-page">
+  <a class="skip-link" href="#main">본문으로 바로가기</a>
+  <header class="topbar" data-elevate>
+    <a class="brand" href="./" aria-label="마음의 모양 홈">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span class="brand-copy"><strong>마음의 모양</strong><small>Attachment Test</small></span>
+    </a>
+    <div class="test-header-actions">
+      <a href="encyclopedia.html" class="ency-link">백과사전</a>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="화면 테마 변경" aria-pressed="false">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="test-hero">
+      <div>
+        <span class="test-kicker">ATTACHMENT SELF-REFLECTION</span>
+        <h1>나는 사랑 앞에서<br><em>어떤 반응을 할까요?</em></h1>
+        <p>하나의 관계를 떠올리고 답해 보세요. 결과는 ‘정체성 판정’이 아니라 현재 관계에서 나타나는 <strong>애착 불안</strong>과 <strong>애착 회피</strong>의 정도를 보여줍니다.</p>
+      </div>
+    </section>
+
+    <section class="test-shell-section" id="testArea">
+      <div class="context-card" id="contextCard">
+        <h2>먼저 기준이 될 관계를 정해 주세요</h2>
+        <p>사람과 관계마다 반응이 달라질 수 있으므로, 검사 도중 같은 대상을 떠올리는 것이 좋습니다.</p>
+        <div class="context-options" role="radiogroup" aria-label="떠올릴 관계">
+          <button type="button" data-context="현재 연인" aria-pressed="true">현재 연인</button>
+          <button type="button" data-context="과거 연인" aria-pressed="false">과거 연인</button>
+          <button type="button" data-context="좋아하는 사람" aria-pressed="false">좋아하는 사람</button>
+          <button type="button" data-context="가장 가까운 사람" aria-pressed="false">가장 가까운 사람</button>
+          <button type="button" data-context="전반적인 연애 관계" aria-pressed="false">전반적인 연애 관계</button>
+        </div>
+      </div>
+
+      <div class="test-choice-grid" id="testChoice">
+        <article class="test-choice quick-choice">
+          <span class="choice-label">LIGHT · 가볍게</span>
+          <div class="choice-icon">♡</div>
+          <h2>단순형 테스트</h2>
+          <p>핵심 반응만 빠르게 확인합니다. 지금 내 불안과 회피가 어느 방향인지 처음 살펴보기에 좋습니다.</p>
+          <dl>
+            <div><dt>문항</dt><dd>12개</dd></div>
+            <div><dt>시간</dt><dd>약 2분</dd></div>
+            <div><dt>결과</dt><dd>두 축 + 가까운 원형</dd></div>
+          </dl>
+          <button class="button button-primary" type="button" data-start="quick">단순형 시작하기</button>
+        </article>
+
+        <article class="test-choice deep-choice">
+          <span class="choice-label">DEEP · 진지하게</span>
+          <div class="choice-icon">❦</div>
+          <h2>복잡형 테스트</h2>
+          <p>불안과 회피를 여섯 개 세부 영역으로 나눕니다. 촉발 상황, 관계 전략, 실천 가이드까지 더 깊게 봅니다.</p>
+          <dl>
+            <div><dt>문항</dt><dd>36개</dd></div>
+            <div><dt>시간</dt><dd>약 6~8분</dd></div>
+            <div><dt>결과</dt><dd>두 축 + 6개 세부영역</dd></div>
+          </dl>
+          <button class="button button-primary" type="button" data-start="deep">복잡형 시작하기</button>
+        </article>
+      </div>
+
+      <aside class="test-notice">
+        <b>중요한 안내</b>
+        <p>이 테스트는 애착 연구의 불안·회피 개념을 바탕으로 자체 제작한 교육용 자기점검입니다. ECR-R 또는 다른 표준화 심리검사가 아니며, 임상적 진단·치료·상담을 대체하지 않습니다. 연구용이나 채용·평가용으로 사용하면 안 됩니다.</p>
+      </aside>
+
+      <section class="test-runner" id="testRunner" hidden>
+        <div class="runner-header">
+          <button type="button" id="exitTest">← 나가기</button>
+          <div><span id="modeName">단순형</span><b id="runnerCounter">1 / 12</b></div>
+          <button type="button" id="saveExit">저장</button>
+        </div>
+        <div class="runner-progress" role="progressbar" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1"><span id="runnerProgress"></span></div>
+        <div class="context-reminder">떠올리는 관계 · <strong id="contextReminder">현재 연인</strong></div>
+        <article class="runner-question">
+          <small id="facetLabel">관계 반응</small>
+          <h2 id="runnerQuestion"></h2>
+          <p id="runnerHint"></p>
+          <div class="runner-scale" id="runnerScale"></div>
+        </article>
+        <div class="runner-nav">
+          <button type="button" id="prevQuestion">이전</button>
+          <button type="button" id="nextQuestion" disabled>다음</button>
+        </div>
+      </section>
+
+      <section class="test-result" id="testResult" hidden aria-live="polite">
+        <div class="result-heading">
+          <span id="resultModeBadge">단순형 결과</span>
+          <h2 id="testResultTitle">안정형 원형에 가까운 반응</h2>
+          <p id="testResultIntro"></p>
+        </div>
+
+        <div class="result-dashboard">
+          <div class="result-map matrix" id="testResultMatrix" role="img" aria-label="애착 불안과 회피 결과 좌표">
+            <span class="matrix-label top-left">불안집착</span>
+            <span class="matrix-label top-right">공포회피</span>
+            <span class="matrix-label bottom-left">안정</span>
+            <span class="matrix-label bottom-right">거부회피</span>
+            <span class="matrix-dot" id="testResultDot" aria-hidden="true"></span>
+          </div>
+          <div class="axis-results">
+            <article>
+              <div><span>애착 불안</span><b id="anxietyScore">0</b></div>
+              <div class="score-bar"><i id="anxietyBar"></i></div>
+              <p id="anxietyInterpretation"></p>
+            </article>
+            <article>
+              <div><span>애착 회피</span><b id="avoidanceScore">0</b></div>
+              <div class="score-bar"><i id="avoidanceBar"></i></div>
+              <p id="avoidanceInterpretation"></p>
+            </article>
+          </div>
+        </div>
+
+        <section class="facet-results" id="facetResults" hidden>
+          <div class="subsection-heading">
+            <span>DETAILED PATTERN</span>
+            <h3>세부 반응 영역</h3>
+            <p>점수가 높을수록 해당 반응이 최근 떠올린 관계에서 더 자주 나타났다는 뜻입니다.</p>
+          </div>
+          <div id="facetGrid" class="facet-grid"></div>
+          <div class="clarity-card">
+            <div><span>응답 패턴 선명도</span><b id="clarityValue">보통</b></div>
+            <p id="clarityText"></p>
+          </div>
+        </section>
+
+        <section class="result-reading">
+          <article><small>내면에서 일어날 수 있는 일</small><p id="innerPattern"></p></article>
+          <article><small>관계에서 보일 수 있는 반응</small><p id="behaviorPattern"></p></article>
+          <article><small>강점으로 사용할 수 있는 부분</small><p id="strengthPattern"></p></article>
+          <article><small>주의해서 볼 부분</small><p id="riskPattern"></p></article>
+          <article><small>지금 해볼 작은 연습</small><p id="practicePattern"></p></article>
+        </section>
+
+        <aside class="result-boundary">
+          <b>이 결과가 확정하지 않는 것</b>
+          <p>성격 전체, 어린 시절의 원인, 상대의 유형, 관계의 성공 가능성, 정신질환 여부를 판정하지 않습니다. 점수의 50점은 임상적 기준이 아니라 네 원형을 설명하기 위한 교육용 중간선입니다.</p>
+        </aside>
+
+        <div class="result-buttons">
+          <button class="button button-primary" type="button" id="shareTestResult">결과 공유하기</button>
+          <button class="button button-ghost" type="button" id="retrySame">같은 테스트 다시 하기</button>
+          <button class="button button-ghost" type="button" id="chooseOther">다른 테스트 선택</button>
+          <a class="button button-ghost" href="encyclopedia.html">유형·조합 자세히 보기</a>
+        </div>
+        <p class="result-date" id="resultDate"></p>
+      </section>
+    </section>
+
+    <section class="method-section">
+      <div>
+        <span class="test-kicker">HOW IT WORKS</span>
+        <h2>결과는 이렇게 계산합니다</h2>
+        <div class="method-grid">
+          <article><b>01</b><h3>두 축을 별도로 계산</h3><p>애착 불안과 애착 회피 문항을 각각 평균내어 0~100으로 변환합니다.</p></article>
+          <article><b>02</b><h3>역문항 반영</h3><p>무조건 동의하는 응답 습관을 줄이기 위해 일부 문항은 안정적인 반응을 묻고 점수를 반대로 계산합니다.</p></article>
+          <article><b>03</b><h3>원형은 보조 해석</h3><p>두 축의 중간선을 기준으로 가장 가까운 네 원형을 보여주지만, 실제 애착은 연속적인 정도로 해석합니다.</p></article>
+          <article><b>04</b><h3>관계별 결과</h3><p>현재 연인, 과거 연인, 부모, 친구를 떠올렸을 때 서로 다른 점수가 나올 수 있습니다.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="test-footer">
+    <div class="footer-heart" aria-hidden="true">♡</div>
+    <strong>마음의 모양</strong>
+    <p>라벨보다 두 축을, 판정보다 이해를.</p>
+    <nav><a href="./">홈</a><a href="encyclopedia.html">애착 백과사전</a></nav>
+    <small>© <span id="currentYear"></span> Shape of Heart</small>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="tests.js" defer></script>
+</body>
+</html>
