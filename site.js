@@ -108,6 +108,24 @@
     });
   }
 
+  function applyUpdatedPurpose() {
+    const story = $('#service-purpose .dashboard-feature');
+    if (!story) return;
+
+    const heading = story.querySelector('h3');
+    const first = story.querySelector('p');
+    if (heading) heading.textContent = '같은 잘못을 반복하지 않기 위해 시작했습니다';
+    if (first) first.textContent = '소중한 사람의 불안과 상처를 충분히 이해하지 못한 채, 미안하다는 말과 같은 약속만 반복했던 제 행동을 돌아보는 것이 이 프로젝트의 출발점입니다.';
+
+    let details = story.querySelector('.origin-story-details');
+    if (!details) {
+      details = document.createElement('details');
+      details.className = 'origin-story-details';
+      story.appendChild(details);
+    }
+    details.innerHTML = '<summary>이야기 더 읽기</summary><div><p>상대방이 여러 번 불안함과 힘든 마음을 이야기했는데도 저는 그 말을 충분히 이해하지 못했습니다. 상대를 위한다고 생각하며 말을 숨기거나 솔직하게 이야기하지 않았던 행동도 결국 신뢰를 무너뜨리고 불안을 더 크게 만드는 행동이었다는 것을 뒤늦게 깨달았습니다.</p><p>애착 유형을 공부하기 시작한 것은 상대방을 특정한 유형으로 단정하거나 관계에서 일어난 일을 유형의 탓으로 돌리기 위해서가 아닙니다. 상대방이 어떤 마음으로 힘들어했는지, 저는 왜 같은 행동을 반복했는지, 앞으로 누군가를 사랑할 때 어떤 태도와 소통이 필요한지를 제대로 이해하고 싶었습니다.</p><p>이 사이트를 만들었다는 사실만으로 제가 달라졌다고 생각하지 않습니다. 공부하고 정리하는 것은 변화의 시작일 뿐이고, 진짜 변화는 말을 숨기지 않는 것, 불편한 상황에서도 솔직하게 이야기하는 것, 상대방의 감정을 제 기준으로 판단하지 않는 것, 약속한 일을 실제 행동으로 지키는 것으로 증명해야 한다고 생각합니다.</p><p>이 기록은 누군가에게 다시 기회를 달라고 요구하거나 결정을 바꾸게 하기 위한 수단이 아닙니다. 상대방의 마음과 결정을 존중하고, 제가 공부하고 달라지기 위해 노력하는 일은 제가 스스로 선택하고 책임져야 할 몫입니다.</p><p>제가 무엇을 잘못했는지 잊지 않고 같은 방식으로 다시는 소중한 사람에게 상처를 주지 않기 위해 이 공간을 만들었습니다. 이곳이 관계를 단정하는 답안지가 아니라 자신의 마음과 행동을 천천히 돌아볼 수 있는 작은 안내서가 되었으면 합니다.</p></div>';
+  }
+
   function initOpenProject() {
     $$('.site-sidebar').forEach(sidebar => {
       if (sidebar.querySelector('a[href="feedback.html"]')) return;
@@ -121,8 +139,11 @@
     const section = document.createElement('section');
     section.className = 'dashboard-section';
     section.id = 'service-purpose';
-    section.innerHTML = '<article class="dashboard-feature"><small>WHY THIS PROJECT STARTED</small><h3>서로의 마음을 더 잘 이해하기 위해</h3><p>마음의 모양은 관계에서 서로 다른 반응을 이해하고, 더 건강하고 행복한 관계를 만드는 데 도움을 주기 위해 시작했습니다. 배운 내용을 개인적인 메모에만 남기지 않고 누구나 쉽게 살펴볼 수 있는 정보 서비스로 정리합니다.</p><a class="button button-primary" href="feedback.html">열린 프로젝트에 의견 보내기</a></article>';
+    section.innerHTML = '<article class="dashboard-feature"><small>WHY THIS PROJECT STARTED</small><h3>같은 잘못을 반복하지 않기 위해 시작했습니다</h3><p>소중한 사람의 불안과 상처를 충분히 이해하지 못한 채, 미안하다는 말과 같은 약속만 반복했던 제 행동을 돌아보는 것이 이 프로젝트의 출발점입니다.</p><a class="button button-primary" href="feedback.html">열린 프로젝트에 의견 보내기</a></article>';
     welcome.insertAdjacentElement('afterend', section);
+    applyUpdatedPurpose();
+    setTimeout(applyUpdatedPurpose, 140);
+    setTimeout(applyUpdatedPurpose, 360);
   }
 
   function initServiceWorker() {
