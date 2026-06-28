@@ -1,0 +1,86 @@
+name: Apply service upgrade
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - site-enhancements.js
+      - test-enhancements.js
+      - readability.css
+      - personalization.css
+      - .github/workflows/apply-service-upgrade.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Patch pages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.parse import urljoin
+
+          domain = 'https://shape-of-heart.lavalabs.co.kr/'
+          pages = ['index.html','types.html','pairings.html','tests.html','glossary.html','encyclopedia.html','feedback.html','history.html']
+
+          for name in pages:
+              path = Path(name)
+              if not path.exists():
+                  continue
+              html = path.read_text(encoding='utf-8')
+              for css in ('readability.css','personalization.css'):
+                  tag = f'  <link rel="stylesheet" href="{css}">\n'
+                  if f'href="{css}"' not in html:
+                      html = html.replace('</head>', tag + '</head>')
+
+              canonical = urljoin(domain, '' if name == 'index.html' else name)
+              if 'rel="canonical"' not in html:
+                  html = html.replace('</head>', f'  <link rel="canonical" href="{canonical}">\n</head>')
+              if 'property="og:url"' in html:
+                  import re
+                  html = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{canonical}">', html)
+              else:
+                  html = html.replace('</head>', f'  <meta property="og:url" content="{canonical}">\n  <meta name="twitter:card" content="summary_large_image">\n</head>')
+
+              if 'src="site-enhancements.js"' not in html:
+                  html = html.replace('</body>', '  <script src="site-enhancements.js" defer></script>\n</body>')
+              if name == 'tests.html' and 'src="test-enhancements.js"' not in html:
+                  html = html.replace('</body>', '  <script src="test-enhancements.js" defer></script>\n</body>')
+              path.write_text(html, encoding='utf-8')
+
+          pairings = Path('pairings.js')
+          if pairings.exists():
+              text = pairings.read_text(encoding='utf-8')
+              text = text.replace("? params.get('me') : 'anxious'", "? params.get('me') : 'secure'")
+              text = text.replace("? params.get('partner') : 'dismissive'", "? params.get('partner') : 'anxious'")
+              pairings.write_text(text, encoding='utf-8')
+
+          index = Path('index.html')
+          if index.exists():
+              html = index.read_text(encoding='utf-8')
+              html = html.replace('불안형과 회피형이 만나면 왜 더 힘들어질까요?', '안정형 × 불안형은 어떻게 서로를 도울 수 있을까요?')
+              html = html.replace('한쪽이 확신을 얻으려고 가까이 갈수록 다른 쪽은 압박을 느끼고 멀어지며, 그 거리가 다시 불안을 키우는 추격–철회 악순환이 생길 수 있습니다. 누구 한 명의 ‘성격 문제’가 아니라 서로의 보호 전략이 맞물리는 구조로 살펴봅니다.', '안정형의 일관된 반응은 불안형에게 새로운 안전 경험이 될 수 있습니다. 다만 한쪽이 계속 달래는 역할을 맡기보다 따뜻한 안심과 명확한 경계를 함께 사용하고, 불안형도 자기조절을 키우는 것이 중요합니다.')
+              html = html.replace('pairings.html?me=anxious&partner=dismissive', 'pairings.html?me=secure&partner=anxious')
+              html = html.replace('불안–회피 조합 보기', '안정형 × 불안형 예시 보기')
+              index.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Commit upgrade
+        run: |
+          if git diff --quiet; then
+            echo "Already upgraded."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html types.html pairings.html pairings.js tests.html glossary.html encyclopedia.html feedback.html history.html
+          git commit -m "feat: apply unified UX, SEO and personalization"
+          git push
