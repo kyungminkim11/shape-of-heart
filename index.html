@@ -5,350 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff8f6">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="마음의 모양은 성인 애착을 불안과 회피의 두 축으로 이해하는 모바일 우선 관계 안내서입니다.">
-  <meta name="keywords" content="성인애착, 애착유형, 불안형, 회피형, 안정형, 공포회피형, 관계심리">
-  <meta name="author" content="Shape of Heart">
+  <meta name="description" content="마음의 모양은 성인 애착 유형, 관계 조합, 용어 사전과 자기점검 테스트를 제공하는 모바일 우선 정보 웹사이트입니다.">
+  <meta name="keywords" content="성인애착, 애착유형, 불안형, 회피형, 안정형, 공포회피형, 애착 테스트, 관계 조합">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="마음의 모양 · Shape of Heart">
-  <meta property="og:description" content="사랑 앞에서 달라지는 내 마음의 모양을, 낙인 대신 두 개의 축으로 살펴보세요.">
+  <meta property="og:title" content="마음의 모양 · 성인 애착 정보 사이트">
+  <meta property="og:description" content="유형, 조합, 테스트, 용어사전까지 한곳에서 살펴보세요.">
   <meta property="og:url" content="https://kyungminkim11.github.io/shape-of-heart/">
-  <meta name="twitter:card" content="summary">
-  <title>마음의 모양 · 성인 애착 안내서</title>
+  <title>마음의 모양 · 성인 애착 정보 사이트</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="site.css">
   <script>
     try {
       const saved = localStorage.getItem('soh-theme');
-      if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.dataset.theme = 'dark';
-      }
+      if (saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.dataset.theme = 'dark';
     } catch (_) {}
   </script>
 </head>
-<body>
+<body class="site-page">
   <a class="skip-link" href="#main">본문으로 바로가기</a>
 
-  <header class="topbar" data-elevate>
-    <a class="brand" href="#home" aria-label="마음의 모양 홈">
-      <span class="brand-mark" aria-hidden="true"><span></span></span>
-      <span class="brand-copy"><strong>마음의 모양</strong><small>Shape of Heart</small></span>
-    </a>
-    <button class="icon-button" id="themeToggle" type="button" aria-label="화면 테마 변경" aria-pressed="false">
-      <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
-      <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
-    </button>
+  <header class="site-header">
+    <div class="site-header-left">
+      <button class="site-menu-button" id="menuButton" type="button" aria-label="전체 메뉴 열기" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a class="brand" href="./" aria-label="마음의 모양 홈">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-copy"><strong>마음의 모양</strong><small>Shape of Heart</small></span>
+      </a>
+    </div>
+
+    <nav class="site-desktop-nav" aria-label="주요 메뉴">
+      <a href="./" class="active">홈</a>
+      <a href="types.html">유형</a>
+      <a href="pairings.html">조합</a>
+      <a href="tests.html">테스트</a>
+      <a href="glossary.html">용어사전</a>
+      <a href="encyclopedia.html">백과사전</a>
+    </nav>
+
+    <div class="site-header-actions">
+      <button class="site-search-button" id="searchButton" type="button" aria-label="사이트 검색 열기">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg>
+        <span>검색</span>
+      </button>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="화면 테마 변경" aria-pressed="false">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
+      </button>
+    </div>
   </header>
 
-  <main id="main">
-    <section class="hero section" id="home" data-section="home">
-      <div class="hero-glow glow-one" aria-hidden="true"></div>
-      <div class="hero-glow glow-two" aria-hidden="true"></div>
-      <div class="eyebrow reveal"><span class="eyebrow-dot"></span>연애 MBTI가 아닌, 관계를 이해하는 지도</div>
-      <h1 class="reveal">사랑 앞에서 달라지는<br><em>내 마음의 모양</em></h1>
-      <p class="hero-copy reveal">누군가는 더 가까이 다가가고, 누군가는 잠시 멀어집니다. 마음의 모양은 사람을 네 상자에 가두지 않고 <strong>애착 불안</strong>과 <strong>애착 회피</strong>라는 두 축으로 관계의 반응을 살펴봅니다.</p>
-      <div class="hero-actions reveal">
-        <a class="button button-primary" href="#check">내 반응 살펴보기 <span aria-hidden="true">→</span></a>
-        <a class="button button-ghost" href="#axes">두 축부터 이해하기</a>
+  <div class="site-overlay" id="siteOverlay"></div>
+  <aside class="site-sidebar" id="siteSidebar" aria-label="전체 메뉴">
+    <div class="sidebar-top">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"><span></span></span><span class="brand-copy"><strong>마음의 모양</strong><small>Information Hub</small></span></a>
+      <button class="sidebar-close" id="sidebarClose" type="button" aria-label="메뉴 닫기">×</button>
+    </div>
+    <div class="sidebar-group">
+      <span class="sidebar-label">MAIN</span>
+      <a href="./" class="active"><svg viewBox="0 0 24 24"><path d="m4 10 8-6 8 6v9H4Z"/></svg>홈</a>
+      <a href="tests.html"><svg viewBox="0 0 24 24"><path d="M9 4h6l1 3h3v13H5V7h3Z"/><path d="M9 13h6M12 10v6"/></svg>유형 테스트</a>
+    </div>
+    <div class="sidebar-group">
+      <span class="sidebar-label">LEARN</span>
+      <a href="types.html"><svg viewBox="0 0 24 24"><path d="M12 20S4 15.5 4 9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.5 12 20 12 20Z"/></svg>유형별 특징</a>
+      <a href="pairings.html"><svg viewBox="0 0 24 24"><path d="M8 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm8 6a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/><path d="m10.5 10.5 3 3"/></svg>16가지 조합</a>
+      <a href="glossary.html"><svg viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Zm0 13a3 3 0 0 1 3-3h10"/></svg>용어 사전</a>
+      <a href="encyclopedia.html"><svg viewBox="0 0 24 24"><path d="M4 5a3 3 0 0 1 3-3h5v18H7a3 3 0 0 0-3 3Zm16 0a3 3 0 0 0-3-3h-5v18h5a3 3 0 0 1 3 3Z"/></svg>애착 백과사전</a>
+    </div>
+    <div class="sidebar-group">
+      <span class="sidebar-label">GUIDE</span>
+      <a href="encyclopedia.html#growth">안정화 연습</a>
+      <a href="encyclopedia.html#measurement">측정과 연구</a>
+      <a href="encyclopedia.html#research">주요 참고자료</a>
+    </div>
+  </aside>
+
+  <div class="site-layout">
+    <aside class="site-sidebar" aria-label="데스크톱 사이드 메뉴">
+      <div class="sidebar-group">
+        <span class="sidebar-label">MAIN</span>
+        <a href="./" class="active">홈</a>
+        <a href="tests.html">유형 테스트</a>
       </div>
-
-      <div class="heart-orbit reveal" aria-label="애착 불안과 회피의 네 조합을 표현한 장식">
-        <div class="orbit-label orbit-secure"><b>안정</b><span>편안한 연결</span></div>
-        <div class="orbit-label orbit-anxious"><b>불안집착</b><span>가까이 더</span></div>
-        <div class="heart-illustration" aria-hidden="true">
-          <span class="heart-piece left"></span><span class="heart-piece right"></span>
-          <span class="heart-spark s1"></span><span class="heart-spark s2"></span><span class="heart-spark s3"></span>
-        </div>
-        <div class="orbit-label orbit-dismissive"><b>거부회피</b><span>거리 두기</span></div>
-        <div class="orbit-label orbit-fearful"><b>공포회피</b><span>다가감과 멀어짐</span></div>
+      <div class="sidebar-group">
+        <span class="sidebar-label">LEARN</span>
+        <a href="types.html">유형별 특징</a>
+        <a href="pairings.html">16가지 조합</a>
+        <a href="glossary.html">용어 사전</a>
+        <a href="encyclopedia.html">애착 백과사전</a>
       </div>
-
-      <aside class="notice-card reveal" role="note">
-        <span class="notice-icon" aria-hidden="true">i</span>
-        <p><strong>먼저 기억해 주세요.</strong> 애착은 성격표나 진단명이 아닙니다. 상대와 상황, 관계의 안전성에 따라 달라질 수 있고 새로운 경험을 통해 변화할 수 있습니다.</p>
-      </aside>
-    </section>
-
-    <section class="section soft-section" id="axes" data-section="axes">
-      <div class="section-heading reveal">
-        <span class="kicker">01 · TWO DIMENSIONS</span>
-        <h2>유형보다 먼저,<br>두 개의 축을 봅니다</h2>
-        <p>현대 성인 애착 자기보고 연구는 흔히 개인차를 불안과 회피의 연속선에서 이해합니다. 아래 조절 막대를 움직여 네 조합이 어떻게 달라지는지 확인해 보세요.</p>
+      <div class="sidebar-group">
+        <span class="sidebar-label">GUIDE</span>
+        <a href="encyclopedia.html#growth">안정화 연습</a>
+        <a href="encyclopedia.html#measurement">측정과 연구</a>
+        <a href="encyclopedia.html#research">주요 참고자료</a>
       </div>
+    </aside>
 
-      <div class="axis-lab reveal">
-        <div class="matrix-wrap">
-          <div class="matrix" id="axisMatrix" role="img" aria-label="애착 불안과 회피 조합 좌표">
-            <span class="matrix-label top-left">불안집착</span>
-            <span class="matrix-label top-right">공포회피</span>
-            <span class="matrix-label bottom-left">안정</span>
-            <span class="matrix-label bottom-right">거부회피</span>
-            <span class="matrix-axis-label axis-y">불안 높음</span>
-            <span class="matrix-axis-label axis-x">회피 높음</span>
-            <span class="matrix-dot" id="matrixDot" aria-hidden="true"></span>
+    <main class="site-main" id="main">
+      <div class="dashboard">
+        <section class="dashboard-welcome">
+          <small>ADULT ATTACHMENT INFORMATION HUB</small>
+          <h1>내 마음과 관계를 이해하는<br><em>성인 애착 정보 사이트</em></h1>
+          <p>불안형, 회피형 같은 이름만 소개하지 않습니다. 두 축, 네 원형, 관계 조합, 용어와 연구 체계, 자기점검 테스트까지 필요한 정보를 페이지별로 정리했습니다.</p>
+          <div class="dashboard-actions">
+            <a class="button button-primary" href="tests.html">내 유형 테스트하기</a>
+            <a class="button button-ghost" href="encyclopedia.html">백과사전 둘러보기</a>
           </div>
-        </div>
+        </section>
 
-        <div class="sliders">
-          <label class="slider-card" for="anxietyRange">
-            <span class="slider-title"><b>애착 불안</b><output id="anxietyOutput">35</output></span>
-            <span class="slider-question">“상대가 나를 떠나거나 마음이 식으면 어떡하지?”</span>
-            <input id="anxietyRange" type="range" min="0" max="100" value="35" aria-describedby="anxietyHint">
-            <span class="range-ends" id="anxietyHint"><i>낮음</i><i>높음</i></span>
-          </label>
-          <label class="slider-card" for="avoidanceRange">
-            <span class="slider-title"><b>애착 회피</b><output id="avoidanceOutput">25</output></span>
-            <span class="slider-question">“누군가에게 기대거나 속마음을 보이는 게 불편하다.”</span>
-            <input id="avoidanceRange" type="range" min="0" max="100" value="25" aria-describedby="avoidanceHint">
-            <span class="range-ends" id="avoidanceHint"><i>낮음</i><i>높음</i></span>
-          </label>
-        </div>
-
-        <article class="live-result" id="axisLiveResult" aria-live="polite">
-          <span class="result-petal" aria-hidden="true"></span>
-          <div><small>현재 좌표에 가까운 원형</small><h3 id="axisTypeTitle">안정형 경향</h3><p id="axisTypeCopy">친밀감과 독립성을 함께 유지하며, 관계의 불확실성을 비교적 견딜 수 있는 조합입니다.</p></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="types" data-section="types">
-      <div class="section-heading reveal">
-        <span class="kicker">02 · FOUR PROTOTYPES</span>
-        <h2>네 개의 상자가 아니라<br>네 가지 <em>원형</em></h2>
-        <p>각 유형은 고정된 정체성이 아니라 두 축의 조합을 이해하기 위한 대표적인 모습입니다. 한 사람 안에서도 관계와 시기에 따라 다른 반응이 나타날 수 있습니다.</p>
-      </div>
-
-      <div class="type-grid">
-        <article class="type-card secure reveal" data-type-card="secure">
-          <button class="type-summary" type="button" aria-expanded="false" aria-controls="detail-secure">
-            <span class="type-symbol" aria-hidden="true">♡</span>
-            <span class="type-heading"><small>불안 낮음 · 회피 낮음</small><strong>안정형</strong><em>Secure</em></span>
-            <span class="expand-icon" aria-hidden="true"></span>
-          </button>
-          <p class="type-tagline">“가까워도 괜찮고, 잠시 떨어져 있어도 우리 관계는 이어져.”</p>
-          <div class="type-detail" id="detail-secure" hidden>
-            <dl class="feature-list">
-              <div><dt>보이는 경향</dt><dd>감정과 필요를 비교적 직접 말하고, 갈등을 관계 전체의 붕괴로 해석하지 않습니다.</dd></div>
-              <div><dt>스트레스 상황</dt><dd>도움을 요청하거나 잠시 조절한 뒤 대화를 다시 이어가는 편입니다.</dd></div>
-              <div><dt>강점</dt><dd>친밀감과 자율성의 균형, 신뢰 회복, 명확한 경계 설정.</dd></div>
-              <div><dt>주의할 점</dt><dd>안정적이라고 항상 옳거나 상처받지 않는 것은 아닙니다. 관계의 실제 문제는 별도로 봐야 합니다.</dd></div>
-            </dl>
-            <div class="phrase-box"><span>도움이 되는 말</span><q>지금은 조금 진정할 시간이 필요해. 오늘 저녁에 다시 이야기하자.</q></div>
+        <section class="dashboard-section">
+          <div class="dashboard-section-head"><div><span>QUICK ACCESS</span><h2>무엇부터 볼까요?</h2></div></div>
+          <div class="quick-grid">
+            <a class="quick-card test" href="tests.html"><span class="quick-card-icon">✓</span><h3>유형 테스트</h3><p>12문항 단순형과 36문항 복잡형으로 현재 관계 반응을 확인합니다.</p></a>
+            <a class="quick-card types" href="types.html"><span class="quick-card-icon">♡</span><h3>유형별 특징</h3><p>내면, 행동, 강점, 위험, 갈등 반응과 필요한 관계 경험을 봅니다.</p></a>
+            <a class="quick-card pair" href="pairings.html"><span class="quick-card-icon">∞</span><h3>16가지 조합</h3><p>나와 상대의 반응 전략이 만나 어떤 흐름을 만드는지 살펴봅니다.</p></a>
+            <a class="quick-card dictionary" href="glossary.html"><span class="quick-card-icon">A</span><h3>용어 사전</h3><p>과활성화, 안전기지, 경계, 공동조절 등 핵심 개념을 검색합니다.</p></a>
           </div>
-        </article>
+        </section>
 
-        <article class="type-card anxious reveal" data-type-card="anxious">
-          <button class="type-summary" type="button" aria-expanded="false" aria-controls="detail-anxious">
-            <span class="type-symbol" aria-hidden="true">❣</span>
-            <span class="type-heading"><small>불안 높음 · 회피 낮음</small><strong>불안집착형</strong><em>Preoccupied</em></span>
-            <span class="expand-icon" aria-hidden="true"></span>
-          </button>
-          <p class="type-tagline">“관계가 괜찮다는 확신이 필요해. 작은 변화도 놓치기 어려워.”</p>
-          <div class="type-detail" id="detail-anxious" hidden>
-            <dl class="feature-list">
-              <div><dt>보이는 경향</dt><dd>답장, 말투, 거리감의 변화를 빠르게 감지하고 확인이나 안심을 적극적으로 구합니다.</dd></div>
-              <div><dt>스트레스 상황</dt><dd>애착 체계를 과활성화해 반추, 반복 연락, 즉각적인 해결 요구가 커질 수 있습니다.</dd></div>
-              <div><dt>강점</dt><dd>관계 신호에 민감하고 연결과 화해를 중요하게 여기며 정서적으로 깊이 관여합니다.</dd></div>
-              <div><dt>주의할 점</dt><dd>느낌을 사실로 확정하거나 상대의 즉각적 반응만으로 관계 전체를 판단하지 않도록 구분이 필요합니다.</dd></div>
-            </dl>
-            <div class="phrase-box"><span>도움이 되는 말</span><q>답장이 늦어지면 내가 불안해져. 바쁜 날에는 짧게라도 알려줄 수 있을까?</q></div>
+        <section class="dashboard-section">
+          <div class="dashboard-section-head"><div><span>FOUR PROTOTYPES</span><h2>네 가지 애착 원형</h2></div><a href="types.html">전체 보기 →</a></div>
+          <div class="type-preview-grid">
+            <a class="type-preview secure" href="types.html#secure"><div class="type-preview-top"><span class="type-preview-symbol">♡</span><div><h3>안정형</h3><small>불안 낮음 · 회피 낮음</small></div></div><p>가까움과 독립성을 함께 유지하고, 갈등 후 관계를 복구하는 능력이 비교적 높습니다.</p></a>
+            <a class="type-preview anxious" href="types.html#anxious"><div class="type-preview-top"><span class="type-preview-symbol">❣</span><div><h3>불안집착형</h3><small>불안 높음 · 회피 낮음</small></div></div><p>거리 변화에 민감하고 관계가 안전하다는 확인과 연결을 적극적으로 구합니다.</p></a>
+            <a class="type-preview dismissive" href="types.html#dismissive"><div class="type-preview-top"><span class="type-preview-symbol">◡</span><div><h3>거부회피형</h3><small>불안 낮음 · 회피 높음</small></div></div><p>자기충족과 독립을 중시하며 감정 노출과 의존에서 거리를 두기 쉽습니다.</p></a>
+            <a class="type-preview fearful" href="types.html#fearful"><div class="type-preview-top"><span class="type-preview-symbol">ෆ</span><div><h3>공포회피형</h3><small>불안 높음 · 회피 높음</small></div></div><p>연결을 원하면서도 가까움과 상처를 두려워해 접근과 철회가 함께 나타날 수 있습니다.</p></a>
           </div>
-        </article>
+        </section>
 
-        <article class="type-card dismissive reveal" data-type-card="dismissive">
-          <button class="type-summary" type="button" aria-expanded="false" aria-controls="detail-dismissive">
-            <span class="type-symbol" aria-hidden="true">◡</span>
-            <span class="type-heading"><small>불안 낮음 · 회피 높음</small><strong>거부회피형</strong><em>Dismissing</em></span>
-            <span class="expand-icon" aria-hidden="true"></span>
-          </button>
-          <p class="type-tagline">“내 일은 내가 해결하는 편이 편해. 가까움이 부담이 될 때가 있어.”</p>
-          <div class="type-detail" id="detail-dismissive" hidden>
-            <dl class="feature-list">
-              <div><dt>보이는 경향</dt><dd>독립성을 강조하고 감정적 의존이나 자기개방을 부담스럽게 느낄 수 있습니다.</dd></div>
-              <div><dt>스트레스 상황</dt><dd>애착 체계를 비활성화해 감정을 축소하고 대화나 접촉에서 물러날 수 있습니다.</dd></div>
-              <div><dt>강점</dt><dd>자기조절과 문제 해결, 독립적인 판단, 관계 밖의 삶을 유지하는 능력.</dd></div>
-              <div><dt>주의할 점</dt><dd>감정을 없다고 처리하거나 일방적으로 잠수하면 상대의 불안과 관계 손상이 커질 수 있습니다.</dd></div>
-            </dl>
-            <div class="phrase-box"><span>도움이 되는 말</span><q>지금은 압도돼서 한 시간만 혼자 정리하고 싶어. 피하려는 건 아니고, 9시에 돌아올게.</q></div>
+        <section class="dashboard-section">
+          <div class="dashboard-section-head"><div><span>START HERE</span><h2>처음 보는 사람을 위한 순서</h2></div></div>
+          <div class="dashboard-list">
+            <a href="encyclopedia.html#foundations"><span class="dashboard-list-icon">1</span><div><b>애착의 기본 개념</b><span>애착 체계, 안전기지, 안식처, 내적 작동 모델</span></div><i>→</i></a>
+            <a href="types.html"><span class="dashboard-list-icon">2</span><div><b>네 원형 비교</b><span>겉으로 보이는 행동과 안쪽의 두려움을 구분</span></div><i>→</i></a>
+            <a href="tests.html"><span class="dashboard-list-icon">3</span><div><b>현재 반응 점검</b><span>한 관계를 기준으로 불안과 회피를 별도 확인</span></div><i>→</i></a>
+            <a href="pairings.html"><span class="dashboard-list-icon">4</span><div><b>관계 조합 이해</b><span>두 사람의 전략이 만드는 반복 패턴 살펴보기</span></div><i>→</i></a>
           </div>
-        </article>
+        </section>
 
-        <article class="type-card fearful reveal" data-type-card="fearful">
-          <button class="type-summary" type="button" aria-expanded="false" aria-controls="detail-fearful">
-            <span class="type-symbol" aria-hidden="true">ෆ</span>
-            <span class="type-heading"><small>불안 높음 · 회피 높음</small><strong>공포회피형</strong><em>Fearful</em></span>
-            <span class="expand-icon" aria-hidden="true"></span>
-          </button>
-          <p class="type-tagline">“사랑받고 싶지만, 가까워질수록 상처받을까 두려워.”</p>
-          <div class="type-detail" id="detail-fearful" hidden>
-            <dl class="feature-list">
-              <div><dt>보이는 경향</dt><dd>친밀함을 바라면서도 신뢰와 의존을 두려워해 접근과 철회가 함께 나타날 수 있습니다.</dd></div>
-              <div><dt>스트레스 상황</dt><dd>붙잡기와 밀어내기, 강한 감정과 차단이 교대로 나타나 스스로도 욕구가 혼란스러울 수 있습니다.</dd></div>
-              <div><dt>강점</dt><dd>관계의 복잡한 감정을 섬세하게 감지하며 안전이 확보되면 깊은 연결을 만들 수 있습니다.</dd></div>
-              <div><dt>주의할 점</dt><dd>‘혼란형’과 자동으로 같은 말은 아닙니다. 성인 자기보고의 공포회피와 아동 관찰 분류는 구분해야 합니다.</dd></div>
-            </dl>
-            <div class="phrase-box"><span>도움이 되는 말</span><q>가까워지고 싶은 마음과 무서운 마음이 같이 있어. 천천히 확인하며 가고 싶어.</q></div>
+        <section class="dashboard-section">
+          <article class="dashboard-feature">
+            <small>FEATURED GUIDE</small>
+            <h3>불안형과 회피형이 만나면 왜 더 힘들어질까요?</h3>
+            <p>한쪽이 확신을 얻으려고 가까이 갈수록 다른 쪽은 압박을 느끼고 멀어지며, 그 거리가 다시 불안을 키우는 추격–철회 악순환이 생길 수 있습니다. 누구 한 명의 ‘성격 문제’가 아니라 서로의 보호 전략이 맞물리는 구조로 살펴봅니다.</p>
+            <a class="button button-primary" href="pairings.html?me=anxious&partner=dismissive">불안–회피 조합 보기</a>
+          </article>
+        </section>
+
+        <section class="dashboard-section">
+          <div class="dashboard-section-head"><div><span>ACCURATE TERMS</span><h2>자주 헷갈리는 개념</h2></div><a href="glossary.html">사전 열기 →</a></div>
+          <div class="dashboard-list">
+            <a href="glossary.html?q=공포회피"><span class="dashboard-list-icon">?</span><div><b>공포회피형과 혼란형은 같은가요?</b><span>성인 자기보고, 아동 관찰, AAI 체계를 구분합니다.</span></div><i>→</i></a>
+            <a href="glossary.html?q=과활성화"><span class="dashboard-list-icon">↑</span><div><b>과활성화 전략</b><span>불안을 줄이기 위해 접촉과 확인을 강화하는 전략</span></div><i>→</i></a>
+            <a href="glossary.html?q=비활성화"><span class="dashboard-list-icon">↓</span><div><b>비활성화 전략</b><span>의존 욕구와 감정을 억제하며 거리를 늘리는 전략</span></div><i>→</i></a>
+            <a href="glossary.html?q=획득된 안정"><span class="dashboard-list-icon">↗</span><div><b>획득된 안정</b><span>새로운 관계 경험과 성찰을 통해 안정성을 키우는 과정</span></div><i>→</i></a>
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section check-section" id="check" data-section="check">
-      <div class="section-heading reveal">
-        <span class="kicker">03 · REFLECTION CHECK</span>
-        <h2>요즘 관계 속<br>나의 반응 살펴보기</h2>
-        <p>최근 가까운 관계 하나를 떠올리고 응답해 주세요. 총 12문항이며 결과는 기기에만 저장됩니다.</p>
-      </div>
-
-      <div class="check-disclaimer reveal">
-        <b>교육용 자기점검</b>
-        <p>아래 문항은 이해를 돕기 위해 자체 구성한 것으로 ECR-R 등 표준화 검사가 아니며, 심리 진단이나 상담을 대신하지 않습니다.</p>
-      </div>
-
-      <div class="quiz-shell reveal" id="quizShell">
-        <div class="quiz-intro" id="quizIntro">
-          <div class="mini-heart" aria-hidden="true">♡</div>
-          <h3>답을 잘 고르려 하지 않아도 괜찮아요</h3>
-          <p>평소의 이상적인 모습보다, 최근 몇 달간 실제로 자주 나타난 반응에 가깝게 선택해 보세요.</p>
-          <ul class="privacy-list">
-            <li><span aria-hidden="true">✓</span>약 2~3분</li>
-            <li><span aria-hidden="true">✓</span>로그인 없음</li>
-            <li><span aria-hidden="true">✓</span>서버 전송 없음</li>
-          </ul>
-          <button class="button button-primary button-wide" id="startQuiz" type="button">시작하기</button>
-        </div>
-
-        <form class="quiz-form" id="quizForm" hidden>
-          <div class="quiz-topline">
-            <button class="text-button" id="quizBack" type="button" aria-label="이전 문항">← 이전</button>
-            <span id="quizCounter">1 / 12</span>
-            <button class="text-button muted" id="quitQuiz" type="button">나가기</button>
-          </div>
-          <div class="progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="12" aria-valuenow="1" aria-label="자가점검 진행률"><span id="quizProgress"></span></div>
-          <fieldset class="question-card" id="questionCard">
-            <legend id="questionText"></legend>
-            <p id="questionHint"></p>
-            <div class="answer-scale" id="answerScale"></div>
-          </fieldset>
-        </form>
-
-        <section class="quiz-result" id="quizResult" aria-live="polite" hidden>
-          <span class="result-label">나의 현재 관계 반응</span>
-          <h3 id="resultTitle">안정형에 가까운 조합</h3>
-          <p id="resultLead"></p>
-          <div class="result-matrix matrix" id="resultMatrix" role="img" aria-label="자가점검 결과 좌표">
-            <span class="matrix-label top-left">불안집착</span><span class="matrix-label top-right">공포회피</span>
-            <span class="matrix-label bottom-left">안정</span><span class="matrix-label bottom-right">거부회피</span>
-            <span class="matrix-dot" id="resultDot" aria-hidden="true"></span>
-          </div>
-          <div class="score-pills">
-            <div><span>애착 불안</span><b id="resultAnxiety">0</b><i id="resultAnxietyText">낮은 편</i></div>
-            <div><span>애착 회피</span><b id="resultAvoidance">0</b><i id="resultAvoidanceText">낮은 편</i></div>
-          </div>
-          <div class="result-insights" id="resultInsights"></div>
-          <div class="result-caution"><b>이 결과가 말하지 않는 것</b><p>당신의 성격, 상대의 잘못, 관계의 미래를 확정하지 않습니다. 특정 관계에서 최근 나타난 반응을 돌아보는 출발점입니다.</p></div>
-          <div class="result-actions">
-            <button class="button button-primary" id="shareResult" type="button">결과 공유</button>
-            <button class="button button-ghost" id="restartQuiz" type="button">다시 해보기</button>
-          </div>
-          <p class="share-status" id="shareStatus" role="status"></p>
         </section>
       </div>
-    </section>
+    </main>
+  </div>
 
-    <section class="section" id="guide" data-section="guide">
-      <div class="section-heading reveal">
-        <span class="kicker">04 · RELATIONSHIP LOOP</span>
-        <h2>누가 더 나빠서가 아니라,<br>반응이 서로를 자극할 때</h2>
-        <p>불안이 높은 사람과 회피가 높은 사람이 만났을 때 흔히 나타나는 ‘추격–철회’의 흐름입니다. 모든 관계에 적용되는 공식은 아닙니다.</p>
-      </div>
-
-      <div class="loop-timeline reveal" aria-label="불안 회피 악순환 4단계">
-        <article><span>1</span><div><small>신호</small><h3>연락이나 말투가 달라짐</h3><p>불안 쪽은 거리감을 빠르게 감지하고, 회피 쪽은 압박의 가능성을 감지합니다.</p></div></article>
-        <article><span>2</span><div><small>과활성화</small><h3>확인하고 붙잡음</h3><p>“왜 그래?”, “우리 괜찮아?”처럼 답을 빨리 얻으려는 행동이 커집니다.</p></div></article>
-        <article><span>3</span><div><small>비활성화</small><h3>부담을 느끼고 물러남</h3><p>대화를 줄이거나 혼자 있으려 하면서 상대의 불안은 더 커질 수 있습니다.</p></div></article>
-        <article><span>4</span><div><small>강화</small><h3>더 쫓고, 더 멀어짐</h3><p>각자의 보호 전략이 상대에게는 가장 두려운 신호가 되며 악순환이 반복됩니다.</p></div></article>
-      </div>
-
-      <div class="repair-card reveal">
-        <span class="repair-icon" aria-hidden="true">↻</span>
-        <div><small>LOOP BREAKER</small><h3>거리에는 <em>돌아올 시간</em>을,<br>확인에는 <em>구체적인 요청</em>을</h3></div>
-        <div class="repair-examples">
-          <p><b>막연한 철회 대신</b>“30분 동안 정리하고 9시에 다시 이야기할게.”</p>
-          <p><b>반복 확인 대신</b>“오늘 연락이 줄어서 불안했어. 바쁠 땐 한마디 알려줄 수 있을까?”</p>
-        </div>
-      </div>
-
-      <div class="toolkit-heading reveal"><small>SECURE PRACTICE</small><h3>조금 더 안정적인 방향으로 가는 연습</h3></div>
-      <div class="toolkit-grid">
-        <article class="tool-card reveal"><span>01</span><h4>사실과 해석 분리하기</h4><p><b>사실:</b> 4시간 동안 답장이 없다.<br><b>해석:</b> 나를 싫어하게 됐다.<br><b>확인:</b> 다른 가능성도 있는가?</p></article>
-        <article class="tool-card reveal"><span>02</span><h4>감정에 이름 붙이기</h4><p>“화나” 아래에 있는 불안, 외로움, 압도감, 수치심을 더 정확히 말하면 공격과 회피가 줄어듭니다.</p></article>
-        <article class="tool-card reveal"><span>03</span><h4>요청을 행동으로 말하기</h4><p>“잘해줘”보다 “늦어질 때 메시지 한 줄 남겨줘”처럼 상대가 실행할 수 있는 문장으로 바꿉니다.</p></article>
-        <article class="tool-card reveal"><span>04</span><h4>타임아웃에 복귀 약속 넣기</h4><p>잠시 멈추는 것은 괜찮습니다. 다만 언제, 어떤 방식으로 대화를 재개할지 함께 정합니다.</p></article>
-        <article class="tool-card reveal"><span>05</span><h4>경계를 처벌로 쓰지 않기</h4><p>경계는 나의 행동 기준입니다. 침묵, 차단, 이별 위협으로 상대를 움직이는 수단과는 다릅니다.</p></article>
-        <article class="tool-card reveal"><span>06</span><h4>반복 패턴을 기록하기</h4><p>촉발 사건 → 몸의 반응 → 생각 → 행동 → 결과를 짧게 적으면 자동 반응 사이에 선택지가 생깁니다.</p></article>
-      </div>
-    </section>
-
-    <section class="section soft-section" id="learn" data-section="learn">
-      <div class="section-heading reveal">
-        <span class="kicker">05 · ACCURATE TERMS</span>
-        <h2>비슷해 보여도<br>같은 말은 아닙니다</h2>
-        <p>온라인 설명에서 가장 자주 섞이는 세 연구 체계를 분리했습니다.</p>
-      </div>
-
-      <div class="system-cards">
-        <article class="system-card reveal"><span>아동 관찰</span><h3>낯선 상황 절차</h3><p>영유아가 보호자와 분리되고 재결합할 때 보이는 행동을 관찰합니다.</p><ul><li>안정형</li><li>회피형</li><li>저항·양가형</li><li>혼란형</li></ul></article>
-        <article class="system-card reveal"><span>성인 자기보고</span><h3>연애 애착의 두 차원</h3><p>친밀 관계에서 느끼는 불안과 회피를 설문으로 측정합니다.</p><ul><li>애착 불안</li><li>애착 회피</li><li>네 원형은 두 축의 조합</li></ul></article>
-        <article class="system-card reveal"><span>성인 면접</span><h3>AAI 담화 분류</h3><p>어린 시절 경험을 말하는 방식의 일관성, 몰두, 이상화, 미해결 상태 등을 평가합니다.</p><ul><li>안정·자율</li><li>무시</li><li>몰두</li><li>미해결·혼란</li></ul></article>
-      </div>
-
-      <div class="myth-list reveal">
-        <details><summary><span>“회피형은 사랑하지 않아서 멀어지나요?”</span><i></i></summary><p>그렇게 단정할 수 없습니다. 감정이 커지거나 의존이 위협적으로 느껴질 때 거리를 두는 조절 전략일 수 있습니다. 다만 이유가 무엇이든 반복적인 잠수나 무시는 별도의 행동 책임으로 다뤄야 합니다.</p></details>
-        <details><summary><span>“불안형은 애정이 많아서 그런 건가요?”</span><i></i></summary><p>애정의 양보다 관계의 가용성과 반응성을 확신하기 어려운 상태에 가깝습니다. 실제로 불안정한 상대를 만난 상황인지, 개인의 지속적 경향인지도 함께 살펴야 합니다.</p></details>
-        <details><summary><span>“공포회피형과 혼란형은 같은 말인가요?”</span><i></i></summary><p>완전히 같은 말로 쓰면 부정확합니다. 공포회피형은 성인 자기보고의 높은 불안·높은 회피 조합이고, 혼란형은 원래 아동 행동 관찰에서 나온 분류입니다.</p></details>
-        <details><summary><span>“애착 유형은 평생 변하지 않나요?”</span><i></i></summary><p>비교적 지속되는 경향은 있을 수 있지만 고정된 운명은 아닙니다. 관계마다 다르게 나타날 수 있고, 일관된 안전 경험과 의식적인 연습, 상담 등을 통해 변화할 수 있습니다.</p></details>
-        <details><summary><span>“유형을 알면 상대의 행동을 모두 설명할 수 있나요?”</span><i></i></summary><p>아닙니다. 거짓말, 외도, 폭언, 통제, 강압, 반복적인 약속 위반은 애착 라벨로 덮어서는 안 됩니다. 애착은 맥락을 이해하는 하나의 렌즈일 뿐입니다.</p></details>
-      </div>
-    </section>
-
-    <section class="section sources-section" id="sources">
-      <div class="section-heading reveal">
-        <span class="kicker">SOURCES & SAFETY</span>
-        <h2>근거와 이용 안내</h2>
-        <p>대중적인 유형 설명만 반복하지 않고, 성인 애착 연구의 주요 모델과 측정 체계를 구분해 구성했습니다.</p>
-      </div>
-      <div class="source-list reveal">
-        <a href="https://pubmed.ncbi.nlm.nih.gov/3572722/" target="_blank" rel="noopener noreferrer"><span>1987</span><div><b>Hazan & Shaver</b><p>Romantic love conceptualized as an attachment process</p></div><i>↗</i></a>
-        <a href="https://pubmed.ncbi.nlm.nih.gov/1920064/" target="_blank" rel="noopener noreferrer"><span>1991</span><div><b>Bartholomew & Horowitz</b><p>Attachment styles among young adults: a four-category model</p></div><i>↗</i></a>
-        <a href="https://labs.psychology.illinois.edu/~rcfraley/measures/ecrr.htm" target="_blank" rel="noopener noreferrer"><span>ECR-R</span><div><b>Fraley, Waller & Brennan</b><p>Experiences in Close Relationships—Revised</p></div><i>↗</i></a>
-        <a href="https://labs.psychology.illinois.edu/~rcfraley/measures/relstructures.htm" target="_blank" rel="noopener noreferrer"><span>ECR-RS</span><div><b>Fraley and colleagues</b><p>Relationship-specific attachment structures</p></div><i>↗</i></a>
-        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4845754/" target="_blank" rel="noopener noreferrer"><span>REVIEW</span><div><b>Adult attachment and emotion regulation</b><p>불안의 과활성화와 회피의 비활성화 전략</p></div><i>↗</i></a>
-      </div>
-      <aside class="safety-box reveal">
-        <h3>도움이 급하게 필요한 상황이라면</h3>
-        <p>폭력, 위협, 강압, 스토킹, 자해 위험이 있는 상황은 애착 유형 분석보다 안전 확보가 먼저입니다. 신뢰할 수 있는 주변 사람과 지역의 전문기관 또는 긴급 서비스에 도움을 요청하세요.</p>
-      </aside>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-heart" aria-hidden="true">♡</div>
-    <strong>마음의 모양</strong>
-    <p>사람을 분류하기보다, 관계 속 반응을 이해하기 위해.</p>
-    <nav aria-label="하단 정보"><a href="#sources">연구 출처</a><a href="https://github.com/kyungminkim11/shape-of-heart" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
-    <small>© <span id="currentYear"></span> Shape of Heart · 교육용 정보이며 의료적 진단을 제공하지 않습니다.</small>
-  </footer>
-
-  <nav class="bottom-nav" aria-label="주요 메뉴">
-    <a href="#home" data-nav="home" class="active"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 8-6 8 6v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1Z"/></svg><span>홈</span></a>
-    <a href="#axes" data-nav="axes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v16h16M8 16l3-4 3 2 5-7"/></svg><span>두 축</span></a>
-    <a href="#types" data-nav="types"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20S4 15.5 4 9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.5 12 20 12 20Z"/></svg><span>유형</span></a>
-    <a href="#check" data-nav="check" class="nav-check"><span class="check-bubble"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21S3.5 16.3 3.5 9.8A4.8 4.8 0 0 1 12 6.7a4.8 4.8 0 0 1 8.5 3.1C20.5 16.3 12 21 12 21Z"/></svg></span><span>체크</span></a>
-    <a href="#guide" data-nav="guide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Zm0 13a3 3 0 0 1 3-3h10"/></svg><span>가이드</span></a>
+  <nav class="site-bottom-nav" aria-label="모바일 주요 메뉴">
+    <a href="./" class="active"><svg viewBox="0 0 24 24"><path d="m4 10 8-6 8 6v9H4Z"/></svg><span>홈</span></a>
+    <a href="types.html"><svg viewBox="0 0 24 24"><path d="M12 20S4 15.5 4 9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.5 12 20 12 20Z"/></svg><span>유형</span></a>
+    <a href="tests.html"><svg viewBox="0 0 24 24"><path d="M9 4h6l1 3h3v13H5V7h3Z"/><path d="m8 13 2 2 5-5"/></svg><span>테스트</span></a>
+    <a href="pairings.html"><svg viewBox="0 0 24 24"><path d="M8 13a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm8 6a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg><span>조합</span></a>
+    <a href="encyclopedia.html"><svg viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Zm0 13a3 3 0 0 1 3-3h10"/></svg><span>백과</span></a>
   </nav>
 
+  <div class="site-search-modal" id="searchModal" role="dialog" aria-modal="true" aria-label="사이트 검색">
+    <div class="search-modal-inner">
+      <div class="search-modal-top">
+        <input class="search-modal-input" id="siteSearchInput" type="search" placeholder="유형, 조합, 용어를 검색하세요" autocomplete="off">
+        <button class="search-modal-close" id="searchClose" type="button" aria-label="검색 닫기">×</button>
+      </div>
+      <div class="search-results" id="siteSearchResults"></div>
+    </div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js" defer></script>
+  <script src="site.js" defer></script>
 </body>
 </html>
