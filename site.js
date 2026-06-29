@@ -108,6 +108,45 @@
     });
   }
 
+  function initHomeVisualFixes() {
+    const isHome = location.pathname === '/' || location.pathname.endsWith('/index.html');
+    if (!isHome) return;
+
+    try {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      const navigation = performance.getEntriesByType?.('navigation')?.[0];
+      if (!location.hash && navigation?.type !== 'back_forward') {
+        requestAnimationFrame(() => scrollTo({top:0,left:0,behavior:'instant'}));
+      }
+    } catch (_) {}
+
+    const svg = path => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
+    const icons = {
+      '?': svg('M12 17h.01M9.1 9a3 3 0 1 1 5.35 1.88c-.95 1.02-2.45 1.37-2.45 3.12'),
+      '↑': svg('M12 19V5m0 0-5 5m5-5 5 5'),
+      '↓': svg('M12 5v14m0 0 5-5m-5 5-5-5'),
+      '↗': svg('M7 17 17 7m-7 0h7v7'),
+      '✓': svg('m5 12 4 4L19 6'),
+      '♡': svg('M12 20S4 15.5 4 9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.5 12 20 12 20Z'),
+      '∞': svg('M8.2 8.2c-2.1 0-3.7 1.6-3.7 3.8s1.6 3.8 3.7 3.8c3.2 0 4.4-7.6 7.6-7.6 2.1 0 3.7 1.6 3.7 3.8s-1.6 3.8-3.7 3.8c-3.2 0-4.4-7.6-7.6-7.6Z'),
+      'A': svg('m6 19 6-14 6 14M8.5 13h7')
+    };
+
+    $$('.dashboard-list-icon,.quick-card-icon').forEach(icon => {
+      const key = icon.textContent.trim();
+      if (!icons[key]) return;
+      icon.innerHTML = icons[key];
+      icon.classList.add('is-svg-icon');
+    });
+
+    if (!$('#home-icon-fix-style')) {
+      const style = document.createElement('style');
+      style.id = 'home-icon-fix-style';
+      style.textContent = '.dashboard-list-icon.is-svg-icon,.quick-card-icon.is-svg-icon{display:grid;place-items:center}.dashboard-list-icon.is-svg-icon svg,.quick-card-icon.is-svg-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.quick-card-icon.is-svg-icon svg{width:22px;height:22px}';
+      document.head.appendChild(style);
+    }
+  }
+
   function initOpenProject() {
     $$('.site-sidebar').forEach(sidebar => {
       if (sidebar.querySelector('a[href="feedback.html"]')) return;
@@ -132,6 +171,7 @@
   initTheme();
   initMenu();
   initSearch();
+  initHomeVisualFixes();
   initOpenProject();
   initServiceWorker();
 })();
