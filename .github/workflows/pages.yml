@@ -25,6 +25,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Apply desktop home hotfix
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+          version = '20260630-5'
+
+          for asset in ('styles.css', 'site.css', 'readability.css', 'personalization.css', 'site.js', 'site-enhancements.js'):
+              html = html.replace(f'"{asset}"', f'"{asset}?v={version}"')
+
+          hotfix = '''
+          <style id="desktop-home-hotfix">
+          @media (min-width:1180px){
+            #siteSidebar{display:none!important}
+            .site-layout{display:grid!important;grid-template-columns:230px minmax(0,1fr)!important;align-items:start!important;width:min(100%,1440px)!important;margin-inline:auto!important}
+            .site-layout>.site-sidebar{display:block!important;position:sticky!important;inset:auto!important;top:var(--header-h)!important;width:230px!important;height:calc(100vh - var(--header-h))!important;grid-column:1!important;grid-row:1!important;transform:none!important;box-shadow:none!important}
+            .site-main{display:block!important;visibility:visible!important;opacity:1!important;grid-column:2!important;grid-row:1!important;min-width:0!important;width:auto!important}
+            .site-main>.dashboard{display:block!important;visibility:visible!important;opacity:1!important;min-height:400px!important}
+          }
+          </style>
+          '''
+
+          if 'id="desktop-home-hotfix"' not in html:
+              html = html.replace('</head>', hotfix + '\n</head>')
+
+          path.write_text(html, encoding='utf-8')
+          PY
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
