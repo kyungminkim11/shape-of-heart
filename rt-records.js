@@ -1,0 +1,1 @@
+window.RT_RECORDS={init(){}};
