@@ -1,0 +1,1 @@
+window.RT_SHARE={init(){}};
