@@ -32,7 +32,7 @@ jobs:
 
           path = Path('index.html')
           html = path.read_text(encoding='utf-8')
-          version = '20260630-7'
+          version = '20260630-8'
 
           for asset in ('styles.css', 'site.css', 'readability.css', 'personalization.css', 'site.js', 'site-enhancements.js'):
               html = html.replace(f'"{asset}"', f'"{asset}?v={version}"')
