@@ -26,6 +26,7 @@
     {title:'낯선 상황 절차',desc:'영유아의 분리와 재결합 행동을 관찰하는 연구 절차',url:'encyclopedia.html#measurement',keys:'ainsworth 아동 혼란형'},
     {title:'ECR-R',desc:'성인 연애 애착의 불안과 회피를 측정하는 대표 척도',url:'encyclopedia.html#measurement',keys:'검사 척도 experiences close relationships'},
     {title:'AAI',desc:'어린 시절 경험을 말하는 담화의 조직 방식을 평가하는 면접',url:'encyclopedia.html#measurement',keys:'adult attachment interview 성인애착면접'},
+    {title:'관계 도구',desc:'상황 가이드, 갈등 패턴, 대화 문장, 기록과 실천',url:'./#relationship-tools',keys:'도구 상황 대화 기록 실천 회복 커플'},
     {title:'의견 보내기',desc:'열린 프로젝트에 개선 의견과 오류 제보 남기기',url:'feedback.html',keys:'피드백 의견 제안 오류 열린 서비스'}
   ];
 
@@ -111,37 +112,26 @@
   function initHomeVisualFixes() {
     const isHome = location.pathname === '/' || location.pathname.endsWith('/index.html');
     if (!isHome) return;
-
     try {
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       const navigation = performance.getEntriesByType?.('navigation')?.[0];
-      if (!location.hash && navigation?.type !== 'back_forward') {
-        requestAnimationFrame(() => scrollTo({top:0,left:0,behavior:'instant'}));
-      }
+      if (!location.hash && navigation?.type !== 'back_forward') requestAnimationFrame(() => scrollTo({top:0,left:0,behavior:'instant'}));
     } catch (_) {}
-
     const svg = path => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
     const icons = {
-      '?': svg('M12 17h.01M9.1 9a3 3 0 1 1 5.35 1.88c-.95 1.02-2.45 1.37-2.45 3.12'),
-      '↑': svg('M12 19V5m0 0-5 5m5-5 5 5'),
-      '↓': svg('M12 5v14m0 0 5-5m-5 5-5-5'),
-      '↗': svg('M7 17 17 7m-7 0h7v7'),
-      '✓': svg('m5 12 4 4L19 6'),
-      '♡': svg('M12 20S4 15.5 4 9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.5 12 20 12 20Z'),
-      '∞': svg('M8.2 8.2c-2.1 0-3.7 1.6-3.7 3.8s1.6 3.8 3.7 3.8c3.2 0 4.4-7.6 7.6-7.6 2.1 0 3.7 1.6 3.7 3.8s-1.6 3.8-3.7 3.8c-3.2 0-4.4-7.6-7.6-7.6Z'),
-      'A': svg('m6 19 6-14 6 14M8.5 13h7')
+      '?':svg('M12 17h.01M9.1 9a3 3 0 1 1 5.35 1.88c-.95 1.02-2.45 1.37-2.45 3.12'),
+      '↑':svg('M12 19V5m0 0-5 5m5-5 5 5'),'↓':svg('M12 5v14m0 0 5-5m-5 5-5-5'),'↗':svg('M7 17 17 7m-7 0h7v7'),
+      '✓':svg('m5 12 4 4L19 6'),'♡':svg('M12 20S4 15.5 4 9.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 8 3.5C20 15.5 12 20 12 20Z'),
+      '∞':svg('M8.2 8.2c-2.1 0-3.7 1.6-3.7 3.8s1.6 3.8 3.7 3.8c3.2 0 4.4-7.6 7.6-7.6 2.1 0 3.7 1.6 3.7 3.8s-1.6 3.8-3.7 3.8c-3.2 0-4.4-7.6-7.6-7.6Z'),
+      'A':svg('m6 19 6-14 6 14M8.5 13h7')
     };
-
     $$('.dashboard-list-icon,.quick-card-icon').forEach(icon => {
       const key = icon.textContent.trim();
       if (!icons[key]) return;
-      icon.innerHTML = icons[key];
-      icon.classList.add('is-svg-icon');
+      icon.innerHTML = icons[key]; icon.classList.add('is-svg-icon');
     });
-
     if (!$('#home-icon-fix-style')) {
-      const style = document.createElement('style');
-      style.id = 'home-icon-fix-style';
+      const style = document.createElement('style'); style.id = 'home-icon-fix-style';
       style.textContent = '.dashboard-list-icon.is-svg-icon,.quick-card-icon.is-svg-icon{display:grid;place-items:center}.dashboard-list-icon.is-svg-icon svg,.quick-card-icon.is-svg-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.quick-card-icon.is-svg-icon svg{width:22px;height:22px}';
       document.head.appendChild(style);
     }
@@ -150,18 +140,29 @@
   function initOpenProject() {
     $$('.site-sidebar').forEach(sidebar => {
       if (sidebar.querySelector('a[href="feedback.html"]')) return;
-      const group = document.createElement('div');
-      group.className = 'sidebar-group';
+      const group = document.createElement('div'); group.className = 'sidebar-group';
       group.innerHTML = '<span class="sidebar-label">PROJECT</span><a href="feedback.html">의견 보내기</a>';
       sidebar.appendChild(group);
     });
     const welcome = $('.dashboard-welcome');
     if (!welcome || $('#service-purpose')) return;
-    const section = document.createElement('section');
-    section.className = 'dashboard-section';
-    section.id = 'service-purpose';
+    const section = document.createElement('section'); section.className = 'dashboard-section'; section.id = 'service-purpose';
     section.innerHTML = '<article class="dashboard-feature"><small>WHY THIS PROJECT STARTED</small><h3>서로의 마음을 더 잘 이해하기 위해</h3><p>마음의 모양은 관계에서 서로 다른 반응을 이해하고, 더 건강하고 행복한 관계를 만드는 데 도움을 주기 위해 시작했습니다. 배운 내용을 개인적인 메모에만 남기지 않고 누구나 쉽게 살펴볼 수 있는 정보 서비스로 정리합니다.</p><a class="button button-primary" href="feedback.html">열린 프로젝트에 의견 보내기</a></article>';
     welcome.insertAdjacentElement('afterend', section);
+  }
+
+  function initRelationshipToolkit() {
+    const version = '20260630-8';
+    const sources = ['rt-data.js','rt-app.js','rt-records.js','rt-share.js','relationship-tools.js'];
+    let chain = Promise.resolve();
+    sources.forEach(source => {
+      chain = chain.then(() => new Promise(resolve => {
+        if (document.querySelector(`script[data-rt-source="${source}"]`)) { resolve(); return; }
+        const script = document.createElement('script');
+        script.src = `${source}?v=${version}`; script.defer = true; script.dataset.rtSource = source;
+        script.onload = resolve; script.onerror = resolve; document.head.appendChild(script);
+      }));
+    });
   }
 
   function initServiceWorker() {
@@ -173,5 +174,6 @@
   initSearch();
   initHomeVisualFixes();
   initOpenProject();
+  initRelationshipToolkit();
   initServiceWorker();
 })();
