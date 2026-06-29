@@ -1,0 +1,1 @@
+window.RT_APP={version:'1.0.0'};
