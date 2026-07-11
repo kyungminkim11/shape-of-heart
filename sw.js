@@ -1,8 +1,9 @@
-const CACHE = 'shape-of-heart-v8';
+const CACHE = 'shape-of-heart-v9';
 const ASSETS = [
   './','./index.html','./types.html','./pairings.html','./tests.html','./glossary.html','./encyclopedia.html','./feedback.html','./history.html',
-  './styles.css','./site.css','./content-pages.css','./tests.css','./encyclopedia.css','./readability.css','./personalization.css',
-  './site.js','./site-enhancements.js','./test-enhancements.js','./history.js','./content-data.js','./types.js','./pairings.js','./tests.js','./glossary.js','./encyclopedia.js',
+  './styles.css','./site.css','./content-pages.css','./tests.css','./encyclopedia.css','./readability.css','./personalization.css','./home-v2.css',
+  './site.js','./site-enhancements.js','./test-enhancements.js','./history.js','./content-data.js','./types.js','./pairings.js','./tests.js','./glossary.js','./encyclopedia.js','./home-v2.js',
+  './rt-data.js','./rt-app.js','./rt-records.js','./rt-share.js','./relationship-tools.js',
   './manifest.webmanifest','./robots.txt','./assets/icon.svg'
 ];
 
