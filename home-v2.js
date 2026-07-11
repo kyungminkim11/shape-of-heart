@@ -213,8 +213,37 @@
         <a href="encyclopedia.html#research">참고자료 확인하기 ${icons.arrow}</a>
         <a href="feedback.html">오류와 개선 의견 보내기 ${icons.arrow}</a>
       </div>`;
-    const purpose = $('#service-purpose');
-    (purpose || dashboard.lastElementChild)?.insertAdjacentElement('beforebegin', section);
+    const footer = $('#home-v2-footer');
+    if (footer) footer.insertAdjacentElement('beforebegin', section);
+    else dashboard.appendChild(section);
+  }
+
+  function reorderHomeSections() {
+    const dashboard = $('.dashboard');
+    if (!dashboard) return;
+    const byLabel = label => findSectionByLabel(label);
+    const order = [
+      $('.dashboard-welcome'),
+      $('#home-v2-journey'),
+      $('#service-purpose'),
+      $('#personal-dashboard-section'),
+      byLabel('QUICK ACCESS'),
+      byLabel('FOUR PROTOTYPES'),
+      byLabel('START HERE'),
+      $('#relationship-tools-entry'),
+      $$('.dashboard-section').find(section => $('.dashboard-feature h3', section)?.textContent.includes('안정형 × 불안형')),
+      byLabel('ACCURATE TERMS'),
+      $('#home-v2-trust-section'),
+      $('#home-v2-footer')
+    ].filter(Boolean);
+    order.forEach((node, index) => {
+      const previous = order[index - 1];
+      if (!previous) {
+        if (dashboard.firstElementChild !== node) dashboard.prepend(node);
+      } else if (previous.nextElementSibling !== node) {
+        previous.insertAdjacentElement('afterend', node);
+      }
+    });
   }
 
   function addFooter() {
@@ -241,12 +270,14 @@
     upgradePurpose();
     addTrustSection();
     addFooter();
+    reorderHomeSections();
   }
 
   function runDynamicUpgrades() {
     upgradePurpose();
     upgradeToolkit();
     addTrustSection();
+    reorderHomeSections();
   }
 
   runStaticUpgrades();
