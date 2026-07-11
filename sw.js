@@ -1,4 +1,4 @@
-const CACHE = 'shape-of-heart-v9';
+const CACHE = 'shape-of-heart-v10';
 const ASSETS = [
   './','./index.html','./types.html','./pairings.html','./tests.html','./glossary.html','./encyclopedia.html','./feedback.html','./history.html',
   './styles.css','./site.css','./content-pages.css','./tests.css','./encyclopedia.css','./readability.css','./personalization.css','./home-v2.css',
