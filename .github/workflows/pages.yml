@@ -25,17 +25,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Apply desktop home hotfix
+      - name: Build production home experience
         run: |
           python - <<'PY'
           from pathlib import Path
 
           path = Path('index.html')
           html = path.read_text(encoding='utf-8')
-          version = '20260630-8'
+          version = '20260711-1'
 
           for asset in ('styles.css', 'site.css', 'readability.css', 'personalization.css', 'site.js', 'site-enhancements.js'):
               html = html.replace(f'"{asset}"', f'"{asset}?v={version}"')
+
+          home_css = f'<link rel="stylesheet" href="home-v2.css?v={version}">'
+          home_js = f'<script src="home-v2.js?v={version}" defer></script>'
+          if 'home-v2.css' not in html:
+              html = html.replace('</head>', home_css + '\n</head>')
+          if 'home-v2.js' not in html:
+              html = html.replace('</body>', home_js + '\n</body>')
 
           hotfix = '''
           <style id="desktop-home-hotfix">
